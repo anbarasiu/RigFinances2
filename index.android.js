@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import {
@@ -12,6 +6,7 @@ import {
   View
 } from 'react-native';
 import LoginPage from './src/pages/LoginPage';
+// import App from './src/routes';
 import NavigationPage from './src/pages/NavigationPage';
 
 export default class SivagamiBorewells extends Component {
@@ -22,8 +17,10 @@ export default class SivagamiBorewells extends Component {
   }
 }
 
+AppRegistry.registerComponent('SivagamiBorewells', () => SivagamiBorewells);
+
 const App = StackNavigator({
-  Login: { screen: LoginPage },
+  Login: { screen: SivagamiBorewells },
   Navigation: { screen: NavigationPage }
 });
 

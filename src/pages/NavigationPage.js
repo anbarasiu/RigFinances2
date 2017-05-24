@@ -10,12 +10,13 @@ import {
 export default class NavigationPage extends Component {
 
   constructor() {
-      this.items = [
-        { name: 'Expenses', page: 'Expenses' },
-        { name: 'Borewell', page: 'Borewell' },
-        { name: 'Reports', page: 'Reports' },
-        { name: 'EmployeeDetails', page: 'EmployeeDetails' }
-      ];
+    super();
+    this.items = [
+      { name: 'Expenses', page: 'Expenses' },
+      { name: 'Borewell', page: 'Borewell' },
+      { name: 'Reports', page: 'Reports' },
+      { name: 'EmployeeDetails', page: 'EmployeeDetails' }
+    ];
   }
 
   onTileSelected() {
@@ -26,11 +27,13 @@ export default class NavigationPage extends Component {
   render() {
     return (
       <View style = {styles.container}>
-        this.items.map((i) => {
-          return(
-            <Tile imgSrc = '' name = {i.name} link = {i.page} />
-          );
-        });
+        {
+          this.items.map((i) => {
+            return(
+              <Tile imgSrc = '' name = {i.name} link = {i.page} />
+            );
+          })
+        }
       </View>
     );
   }
