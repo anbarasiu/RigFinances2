@@ -6,6 +6,7 @@ import {
   Button,
   View
 } from 'react-native';
+import Tile from '../components/Tile';
 
 export default class NavigationPage extends Component {
 
