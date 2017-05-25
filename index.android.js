@@ -17,11 +17,11 @@ export default class SivagamiBorewells extends Component {
   }
 }
 
-AppRegistry.registerComponent('SivagamiBorewells', () => SivagamiBorewells);
+// AppRegistry.registerComponent('SivagamiBorewells', () => SivagamiBorewells);
 
 const App = StackNavigator({
-  Login: { screen: SivagamiBorewells },
+  Login: { screen: LoginPage },
   Navigation: { screen: NavigationPage }
 });
 
-AppRegistry.registerComponent('App', () => App);
+AppRegistry.registerComponent('SivagamiBorewells', () => App);
