@@ -4,11 +4,14 @@ import {
   StyleSheet,
   TextInput,
   Button,
-  View
+  View,
+  Text,
+  Image
 } from 'react-native';
 
 export default class Tile extends Component {
   constructor() {
+    super();
     this.onTileSelected = this.onTileSelected.bind(this);
   }
 
@@ -20,20 +23,23 @@ export default class Tile extends Component {
   render() {
     return (
       <View style = {styles.container} onClick={this.onTileSelected}>
-        <img style = {styles.tileImg} src={props.imgSrc} />
-        <div style = {styles.tileText}>{props.name}</div>
+        <Image style = {styles.tileImg} source={this.props.imgSrc} />
+        <Text style = {styles.tileText}>{this.props.name}</Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: 320
+  },
   tileImg: {
-    position: relative
+    position: 'relative'
   },
   tileText: {
-    position: absolute,
-    color: white
+    position: 'absolute',
+    color: 'white'
   }
 });
 
