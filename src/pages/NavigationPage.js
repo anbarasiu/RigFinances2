@@ -31,7 +31,7 @@ export default class NavigationPage extends Component {
         {
           this.items.map((i) => {
             return(
-              <Tile imgSrc = '' name = {i.name} link = {i.page} />
+              <Tile imgSrc = '' name = {i.name} link = {i.page} style={styles.tile} />
             );
           })
         }
@@ -42,7 +42,13 @@ export default class NavigationPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // TODO: Grid styling
+    flex: 1,
+    width: 320,
+    height: 640
+  },
+  tile: {
+    width: 100,
+    height: 100
   }
 });
 
