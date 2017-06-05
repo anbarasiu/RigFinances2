@@ -4,19 +4,19 @@ import {
   StyleSheet,
   TextInput,
   Button,
-  View
+  View,
+  Text,
+  Image
 } from 'react-native';
-import Tile from '../components/Tile';
 import {items} from '../constants';
 
-export default class NavigationPage extends Component {
-
+export default class TabView extends Component {
   constructor() {
     super();
-    this.onTileSelected = this.onTileSelected.bind(this);
+    this.onTabSelected = this.onTabSelected.bind(this);
   }
 
-  onTileSelected(index) {
+  onTabSelected() {
     // Navigate to selected activity
     navigate(items[index].page);
   }
@@ -27,7 +27,9 @@ export default class NavigationPage extends Component {
         {
           items.map((i, index) => {
             return(
-              <Tile imgSrc = '' name = {i.name} link = {i.page} style={styles.tile} onClick={this.onTileSelected(index)} />
+              <View style={styles.tile} onClick={this.onTileSelected(index)} >
+                {i.name}
+              </View>
             );
           })
         }
@@ -39,13 +41,12 @@ export default class NavigationPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: 'blue'
   },
-  tile: {
-    flex: 1,
-    color: 'black',
-    backgroundColor: '#8BC34A'
+  tab: {
+
   }
 });
 
-AppRegistry.registerComponent('NavigationPage', () => NavigationPage);
+AppRegistry.registerComponent('TabView', () => TabView);
