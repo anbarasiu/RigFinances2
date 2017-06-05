@@ -6,6 +6,7 @@ import {
   Button,
   View
 } from 'react-native';
+import TabView from '../components/TabView';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -26,9 +27,7 @@ export default class BoreDetailsPage extends Component {
   render() {
     return (
       <View style = {styles.container}>
-        <TextInput name = "username" type = "text" placeholder = "User Name" style = {styles.input}/>
-        <TextInput name = "password" type = "password" placeholder = "Password" style = {styles.input} />
-        <Button type = "button" title = "Enter" onPress = {this.onSubmitPressed} style = {styles.input} />
+        <TabView />
       </View>
     );
   }
