@@ -10,7 +10,7 @@ import TabView from '../components/TabView';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
-    title: 'Login',
+    title: 'Bore Details',
   };
 
   constructor() {
@@ -39,9 +39,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
     flex: 1
-  },
-  input: {
-    width: 320
   }
 });
 
