@@ -2,43 +2,35 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  TextInput,
-  Button,
-  View,
+  TouchableHighlight,
   Text,
-  Image
+  Image,
+  View
 } from 'react-native';
 
 export default class Tile extends Component {
-  constructor() {
-    super();
-    this.onTileSelected = this.onTileSelected.bind(this);
-  }
-
-  onTileSelected() {
-    // Navigate to selected activity
-    // props.link
-  }
 
   render() {
     return (
-      <View style = {styles.container} onClick={this.onTileSelected}>
-        <Image style = {styles.tileImg} source={this.props.imgSrc} />
-        <Text style = {styles.tileText}>{this.props.name}</Text>
-      </View>
+      <TouchableHighlight onPress={this.props.onTileSelected} style = {this.props.tileStyle}>
+        <View style = {styles.containerView}>
+          <Image style = {styles.tileImg} />
+          <Text style = {styles.tileText}>{this.props.name}</Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: 320
-  },
-  tileImg: {
-    position: 'relative'
+  containerView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2756A4' //162E3E
   },
   tileText: {
-    position: 'absolute',
+    fontSize: 20,
     color: 'white'
   }
 });
