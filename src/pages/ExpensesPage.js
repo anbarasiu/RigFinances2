@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 import TabView from '../components/TabView';
+import FormHeader from '../components/FormHeader';
 
 export default class ExpensesPage extends Component {
   static navigationOptions = {
@@ -28,6 +29,7 @@ export default class ExpensesPage extends Component {
     return (
       <View style = {styles.container}>
         <TabView />
+        <FormHeader />
       </View>
     );
   }

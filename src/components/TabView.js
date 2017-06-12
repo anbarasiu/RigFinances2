@@ -10,24 +10,15 @@ import {
   TouchableHighlight
 } from 'react-native';
 import items from '../constants';
-import {vh, vw} from '../utils';
+import {setResponsiveGrid} from '../utils';
 
 export default class TabView extends Component {
   constructor() {
     super();
     this.onTabSelected = this.onTabSelected.bind(this);
 
-    const COLUMNS = 6;
-    const MARGIN = vw(1);
-    const SPACING = (COLUMNS + 1) / COLUMNS * MARGIN;
-
-    this.tab = {
-      marginLeft: MARGIN,
-      marginTop: MARGIN,
-      width: vw(100) / COLUMNS - SPACING,
-      height: 50,
-      backgroundColor: '#2756A4'
-    };
+    const columns = 6;
+    this.tab = setResponsiveGrid(columns);
   }
 
   onTabSelected() {
@@ -58,8 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    backgroundColor: '#162E3E',
-    height: 50
+    backgroundColor: '#162E3E'
   },
   tabText: {
     fontSize: 20,
