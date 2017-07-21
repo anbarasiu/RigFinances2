@@ -6,7 +6,8 @@ import {
   Button,
   View
 } from 'react-native';
-import TabView from '../components/TabView';
+// import TabView from '../components/TabView';
+import {MasterPageScreen} from '../routes';
 
 export default class MasterPage extends Component {
   static navigationOptions = {
@@ -25,11 +26,11 @@ export default class MasterPage extends Component {
   }
 
   render() {
-    return (
-      <View style = {styles.container}>
-        <TabView />
-      </View>
-    );
+  //   return (
+  //     <View style = {styles.container}>
+  //       <TabView />
+  //     </View>
+  //   );
   }
 }
 
@@ -42,4 +43,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('MasterPage', () => MasterPage);
+AppRegistry.registerComponent('MasterPage', () => MasterPageScreen);

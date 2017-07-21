@@ -31,7 +31,7 @@ export default class NavigationPage extends Component {
   onTileSelected(index) {
     // Navigate to selected activity
     const { navigate } = this.props.navigation;
-    navigate(items[index].page);
+    navigate('Content', {tab: items[index].page});
   }
 
   render() {

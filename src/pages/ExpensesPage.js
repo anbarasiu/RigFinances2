@@ -4,10 +4,12 @@ import {
   StyleSheet,
   TextInput,
   Button,
+  Text,
   View
 } from 'react-native';
-import TabView from '../components/TabView';
 import FormHeader from '../components/FormHeader';
+import ExpenseItem from '../components/ExpenseItem';
+import expensesContent from '../content/expenses';
 
 export default class ExpensesPage extends Component {
   static navigationOptions = {
@@ -17,6 +19,8 @@ export default class ExpensesPage extends Component {
   constructor() {
     super();
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
+    this.addExpenseItem = this.addExpenseItem.bind(this);
+    this.expenseItems = [{}];
   }
 
   onSubmitPressed() {
@@ -25,11 +29,27 @@ export default class ExpensesPage extends Component {
     navigate('Navigation');
   }
 
+  addExpenseItem() {
+    this.expenseItems.push({});
+  }
+
   render() {
     return (
       <View style = {styles.container}>
-        <TabView />
         <FormHeader />
+        <View style = {styles.row}>
+        {
+          expensesContent.map((e) => {
+            return (
+              <Text style={styles.text}>{e}</Text>
+            );
+          })
+        }
+        </View>
+        {
+          this.expenseItems.map((e, index) => <ExpenseItem index={index} /> )
+        }
+        <Button style={this.button} onPress={this.addExpenseItem} title="Add" />
       </View>
     );
   }
@@ -37,10 +57,19 @@ export default class ExpensesPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
     flex: 1
+  },
+  row: {
+    flexDirection: 'row',
+    flex: 1
+  },
+  text: {
+    margin: 8
+  },
+  button: {
+
   }
 });
 
