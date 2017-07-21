@@ -3,7 +3,6 @@ import {
   AppRegistry,
   StyleSheet,
   TextInput,
-  Button,
   View,
   Text,
   Picker,
