@@ -1,4 +1,4 @@
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import LoginPage from './pages/LoginPage';
 import NavigationPage from './pages/NavigationPage';
 import BoreDetailsPage from './pages/BoreDetailsPage';
@@ -8,15 +8,24 @@ import MasterPage from './pages/MasterPage';
 import ReportsPage from './pages/ReportsPage';
 import ExpensesPage from './pages/ExpensesPage';
 
-const App = StackNavigator({
-  Login: { screen: LoginPage },
+const TabView = TabNavigator({
   Expenses: { screen: ExpensesPage },
-  Navigation: { screen: NavigationPage },
   BoreDetails: { screen: BoreDetailsPage },
   EmployeeDetails: { screen: EmployeeDetailsPage },
   EmployeeMaster: { screen: EmployeeMasterPage },
-  Master: { screen: MasterPage },
   Reports: { screen: ReportsPage }
 });
 
-export default App;
+const App = StackNavigator({
+  Login: { screen: LoginPage },
+  Navigation: { screen: NavigationPage },
+  Content: { screen: TabView }
+  // Expenses: { screen: ExpensesPage },
+  // BoreDetails: { screen: BoreDetailsPage },
+  // EmployeeDetails: { screen: EmployeeDetailsPage },
+  // EmployeeMaster: { screen: EmployeeMasterPage },
+  // Master: { screen: MasterPageScreen },
+  // Reports: { screen: ReportsPage }
+});
+
+export {App, TabView};

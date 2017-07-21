@@ -47,8 +47,8 @@ export default class FormHeader extends Component {
           style={this.tab}
           onPress={this.setDate}
           title={this.state.date} />
-        <Text style={this.tab} >Total Amount</Text>
-        <Text style={this.tab} >User</Text>
+        <Text style={this.tab}>Total Amount</Text>
+        <Text style={this.tab}>User</Text>
       </View>
     );
   }

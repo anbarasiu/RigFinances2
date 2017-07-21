@@ -6,7 +6,6 @@ import {
   Button,
   View
 } from 'react-native';
-import TabView from '../components/TabView';
 
 export default class ReportsPage extends Component {
   static navigationOptions = {
@@ -27,7 +26,6 @@ export default class ReportsPage extends Component {
   render() {
     return (
       <View style = {styles.container}>
-        <TabView />
       </View>
     );
   }

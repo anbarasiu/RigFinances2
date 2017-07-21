@@ -6,41 +6,34 @@ import {
   Button,
   View,
   Text,
-  Image,
-  DatePickerAndroid,
-  TouchableHighlight
+  Picker,
 } from 'react-native';
-import {setResponsiveGrid} from '../utils';
+import expensesContent from '../content/expenses';
 
 export default class ExpenseItem extends Component {
   constructor() {
     super();
-
-    this.state = {
-      date: 'Select Date'
-    };
-    const columns = 3;
-    this.tab = setResponsiveGrid(columns);
-
-    this.setDate = this.setDate.bind(this);
   }
 
   render() {
     return (
-      <View style = {styles.grid}>
-        <Button
-          style={this.tab}
-          onPress={this.setDate}
-          title={this.state.date} />
-        <Text style={this.tab} >Total Amount</Text>
-        <Text style={this.tab} >User</Text>
+      <View style = {styles.container}>
+        <Text>{this.props.index}</Text>
+        <Picker />
+        <Picker />
+        <TextInput keyboardType="numeric" />
+        <Picker />
+        <Picker />
+        <TextInput keyboardType="numeric" />
+        <TextInput keyboardType="numeric" />
+        <TextInput keyboardType="numeric" />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  grid: {
+  container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',

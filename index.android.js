@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 import LoginPage from './src/pages/LoginPage';
-import App from './src/routes';
+import {App} from './src/routes';
 import NavigationPage from './src/pages/NavigationPage';
 
 export default class SivagamiBorewells extends Component {
