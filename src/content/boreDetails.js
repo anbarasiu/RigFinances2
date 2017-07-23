@@ -1,0 +1,20 @@
+export default [
+  { field:'Bore Type', type: 'Picker' },
+  { field:'Hammer Size', type: 'Picker' },
+  { field:'Bit Size', type: 'Picker' },
+  { field:'Casting Depth', type: 'Number' },
+  { field:'Casting Pipe Material', type: 'Picker' },
+  { field:'Casting Pipe Size', type: 'Picker' },
+  { field:'Engine Start Hrs', type: 'TimePicker' },
+  { field:'Engine Stop Hrs', type: 'TimePicker' },
+  { field:'Bit Size', type: 'Picker' },
+  { field:'Eng Average RPM', type: 'Number' },
+  { field:'Location', type: 'Text' },
+  { field:'Bit Loss', type: 'Picker' },
+  { field:'Total Depth', type: 'Number' },
+  { field:'Customer', type: 'Picker' },
+  { field:'Agent', type: 'Text' },
+  { field:'Total Bill', type: 'Number' },
+  { field:'Commission to Agent', type: 'Number' },
+  { field:'Note', type: 'Text' }
+];
