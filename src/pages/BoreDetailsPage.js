@@ -4,8 +4,12 @@ import {
   StyleSheet,
   TextInput,
   Button,
-  View
+  Text,
+  View,
+  ScrollView,
+  Picker
 } from 'react-native';
+import boreDetailsContent from '../content/boreDetails';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -15,6 +19,7 @@ export default class BoreDetailsPage extends Component {
   constructor() {
     super();
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
+    this.renderComponent = this.renderComponent.bind(this);
   }
 
   onSubmitPressed() {
@@ -23,10 +28,33 @@ export default class BoreDetailsPage extends Component {
     navigate('Navigation');
   }
 
+  renderComponent(type) {
+    switch (type) {
+      case 'Picker':
+      return <Picker />;
+      case 'Number':
+      return <TextInput keyboardType="numeric" />;
+      case 'TimePicker':
+      return <TextInput keyboardType="numeric" />;
+      default:
+      return <TextInput />;
+    }
+  }
+
   render() {
     return (
-      <View style = {styles.container}>
-      </View>
+      <ScrollView contentContainerStyle = {styles.container}>
+      {
+        boreDetailsContent.map((b) => {
+          return (
+            <View style={styles.row}>
+              <Text>{b.field}</Text>
+              {this.renderComponent(b.type)}
+            </View>
+          );
+        })
+      }
+      </ScrollView>
     );
   }
 }
@@ -37,6 +65,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
     flex: 1
+  },
+  row: {
+    flexDirection: 'row'
   }
 });
 
