@@ -4,8 +4,12 @@ import {
   StyleSheet,
   TextInput,
   Button,
-  View
+  View,
+  Text
 } from 'react-native';
+import FormHeader from '../components/FormHeader';
+import content from '../content/employeeDetails';
+import {renderComponent} from '../utils';
 
 export default class EmployeeDetailsPage extends Component {
   static navigationOptions = {
@@ -26,6 +30,17 @@ export default class EmployeeDetailsPage extends Component {
   render() {
     return (
       <View style = {styles.container}>
+        <FormHeader />
+        {
+          content.map((c) => {
+            return (
+              <View style={styles.row}>
+                <Text>{c.field}</Text>
+                {renderComponent(c.type)}
+              </View>
+            );
+          })
+        }
       </View>
     );
   }

@@ -10,6 +10,7 @@ import {
   Picker
 } from 'react-native';
 import boreDetailsContent from '../content/boreDetails';
+import {renderComponent} from '../utils';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -19,26 +20,12 @@ export default class BoreDetailsPage extends Component {
   constructor() {
     super();
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
-    this.renderComponent = this.renderComponent.bind(this);
   }
 
   onSubmitPressed() {
     // Navigate to navigation activity
     const { navigate } = this.props.navigation;
     navigate('Navigation');
-  }
-
-  renderComponent(type) {
-    switch (type) {
-      case 'Picker':
-      return <Picker />;
-      case 'Number':
-      return <TextInput keyboardType="numeric" />;
-      case 'TimePicker':
-      return <TextInput keyboardType="numeric" />;
-      default:
-      return <TextInput />;
-    }
   }
 
   render() {
@@ -49,7 +36,7 @@ export default class BoreDetailsPage extends Component {
           return (
             <View style={styles.row}>
               <Text>{b.field}</Text>
-              {this.renderComponent(b.type)}
+              {renderComponent(b.type)}
             </View>
           );
         })
@@ -63,8 +50,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1
+    backgroundColor: '#F5FCFF'
   },
   row: {
     flexDirection: 'row'
