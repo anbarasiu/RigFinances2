@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import FormHeader from '../components/FormHeader';
 import content from '../content/master';
-import {renderComponent} from '../utils';
+import {renderComponent, setResponsiveGrid} from '../utils';
 import {MasterPageScreen} from '../routes';
 
 export default class MasterPage extends Component {
@@ -18,6 +18,7 @@ export default class MasterPage extends Component {
 
   constructor() {
     super();
+    this.columns = setResponsiveGrid(2);
   }
 
   render() {
@@ -28,8 +29,8 @@ export default class MasterPage extends Component {
           content.map((c) => {
             return (
               <View style={styles.row}>
-                <Text>{c.field}</Text>
-                {renderComponent(c.type)}
+                <Text style={this.columns}>{c.field}</Text>
+                {renderComponent(c.type, this.columns)}
               </View>
             );
           })

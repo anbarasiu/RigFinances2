@@ -5,11 +5,12 @@ import {
   TextInput,
   Button,
   View,
-  Text
+  Text,
+  ScrollView
 } from 'react-native';
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeDetails';
-import {renderComponent} from '../utils';
+import {renderComponent, setResponsiveGrid} from '../utils';
 
 export default class EmployeeMasterPage extends Component {
   static navigationOptions = {
@@ -19,6 +20,7 @@ export default class EmployeeMasterPage extends Component {
   constructor() {
     super();
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
+    this.columns = setResponsiveGrid(2);
   }
 
   onSubmitPressed() {
@@ -29,19 +31,19 @@ export default class EmployeeMasterPage extends Component {
 
   render() {
     return (
-      <View style = {styles.container}>
+      <ScrollView contentContainerStyle = {styles.container}>
         <FormHeader />
         {
           content.map((c) => {
             return (
               <View style={styles.row}>
-                <Text>{c.field}</Text>
-                {renderComponent(c.type)}
+                <Text style={this.columns}>{c.field}</Text>
+                {renderComponent(c.type, this.columns)}
               </View>
             );
           })
         }
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -52,6 +54,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
     flex: 1
+  },
+  row: {
+    flexDirection: 'row'
   }
 });
 

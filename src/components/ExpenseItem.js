@@ -8,24 +8,26 @@ import {
   Picker,
 } from 'react-native';
 import expensesContent from '../content/expenses';
+import {setResponsiveGrid} from '../utils';
 
 export default class ExpenseItem extends Component {
   constructor() {
     super();
+    this.columns = setResponsiveGrid(9);
   }
 
   render() {
     return (
       <View style = {styles.container}>
-        <Text>{this.props.index}</Text>
-        <Picker />
-        <Picker />
-        <TextInput keyboardType="numeric" />
-        <Picker />
-        <Picker />
-        <TextInput keyboardType="numeric" />
-        <TextInput keyboardType="numeric" />
-        <TextInput keyboardType="numeric" />
+        <Text style={this.props.columnStyle}>{this.props.index}</Text>
+        <Picker style={this.props.columnStyle} />
+        <Picker style={this.props.columnStyle} />
+        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
+        <Picker style={this.props.columnStyle} />
+        <Picker  style={this.props.columnStyle}/>
+        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
+        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
+        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
       </View>
     );
   }
