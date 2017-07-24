@@ -29,15 +29,15 @@ export function setResponsiveGrid(columns) {
   };
 }
 
-export function renderComponent(type) {
+export function renderComponent(type, style) {
   switch (type) {
     case 'Picker':
-    return <Picker />;
+    return <Picker style={style} />;
     case 'Number':
-    return <TextInput keyboardType="numeric" />;
+    return <TextInput style={style} keyboardType="numeric" />;
     case 'TimePicker':
-    return <TextInput keyboardType="numeric" />;
+    return <TextInput style={style} keyboardType="numeric" />;
     default:
-    return <TextInput />;
+    return <TextInput style={style} />;
   }
 }

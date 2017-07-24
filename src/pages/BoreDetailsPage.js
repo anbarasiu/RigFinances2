@@ -10,7 +10,7 @@ import {
   Picker
 } from 'react-native';
 import boreDetailsContent from '../content/boreDetails';
-import {renderComponent} from '../utils';
+import {renderComponent, setResponsiveGrid} from '../utils';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -20,6 +20,7 @@ export default class BoreDetailsPage extends Component {
   constructor() {
     super();
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
+    this.columns = setResponsiveGrid(2);
   }
 
   onSubmitPressed() {
@@ -35,8 +36,8 @@ export default class BoreDetailsPage extends Component {
         boreDetailsContent.map((b) => {
           return (
             <View style={styles.row}>
-              <Text>{b.field}</Text>
-              {renderComponent(b.type)}
+              <Text style={this.columns}>{b.field}</Text>
+              {renderComponent(b.type, this.columns)}
             </View>
           );
         })
