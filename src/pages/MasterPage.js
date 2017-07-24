@@ -6,7 +6,9 @@ import {
   Button,
   View
 } from 'react-native';
-// import TabView from '../components/TabView';
+import FormHeader from '../components/FormHeader';
+import content from '../content/master';
+import {renderComponent} from '../utils';
 import {MasterPageScreen} from '../routes';
 
 export default class MasterPage extends Component {
@@ -16,21 +18,24 @@ export default class MasterPage extends Component {
 
   constructor() {
     super();
-    this.onSubmitPressed = this.onSubmitPressed.bind(this);
-  }
-
-  onSubmitPressed() {
-    // Navigate to navigation activity
-    const { navigate } = this.props.navigation;
-    navigate('Navigation');
   }
 
   render() {
-  //   return (
-  //     <View style = {styles.container}>
-  //       <TabView />
-  //     </View>
-  //   );
+    return (
+      <View style = {styles.container}>
+        <FormHeader />
+        {
+          content.map((c) => {
+            return (
+              <View style={styles.row}>
+                <Text>{c.field}</Text>
+                {renderComponent(c.type)}
+              </View>
+            );
+          })
+        }
+      </View>
+    );
   }
 }
 
