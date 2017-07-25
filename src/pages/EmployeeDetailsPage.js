@@ -11,6 +11,7 @@ import {
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeDetails';
 import {renderComponent, setResponsiveGrid} from '../utils';
+import commonStyles from '../utils/styles';
 
 export default class EmployeeDetailsPage extends Component {
   static navigationOptions = {
@@ -43,6 +44,7 @@ export default class EmployeeDetailsPage extends Component {
             );
           })
         }
+        <Button type = "button" title = "Submit" onPress = {this.onSubmitPressed} style = {styles.submit} />
       </ScrollView>
     );
   }
@@ -55,9 +57,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     flex: 1
   },
-  row: {
-    flexDirection: 'row'
-  }
+  row: commonStyles.row,
+  submit: commonStyles.submit
 });
 
 AppRegistry.registerComponent('EmployeeDetailsPage', () => EmployeeDetailsPage);
