@@ -9,6 +9,7 @@ import {
 import FormHeader from '../components/FormHeader';
 import content from '../content/master';
 import {renderComponent, setResponsiveGrid} from '../utils';
+import commonStyles from '../utils/styles';
 import {MasterPageScreen} from '../routes';
 
 export default class MasterPage extends Component {
@@ -35,6 +36,7 @@ export default class MasterPage extends Component {
             );
           })
         }
+        <Button type = "button" title = "Submit" onPress = {this.onSubmitPressed} style = {styles.submit} />
       </View>
     );
   }
@@ -46,7 +48,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
     flex: 1
-  }
+  },
+  submit: commonStyles.submit
 });
 
 AppRegistry.registerComponent('MasterPage', () => MasterPageScreen);

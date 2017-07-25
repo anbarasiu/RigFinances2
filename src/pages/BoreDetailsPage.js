@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import boreDetailsContent from '../content/boreDetails';
 import {renderComponent, setResponsiveGrid} from '../utils';
+import commonStyles from '../utils/styles';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -42,6 +43,7 @@ export default class BoreDetailsPage extends Component {
           );
         })
       }
+      <Button type = "button" title = "Submit" onPress = {this.onSubmitPressed} style = {styles.submit} />
       </ScrollView>
     );
   }
@@ -53,9 +55,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
-  row: {
-    flexDirection: 'row'
-  }
+  row: commonStyles.row,
+  submit: commonStyles.submit
 });
 
 AppRegistry.registerComponent('BoreDetailsPage', () => BoreDetailsPage);

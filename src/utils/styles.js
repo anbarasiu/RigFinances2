@@ -8,5 +8,9 @@ export default {
   row: {
     flexDirection: 'row',
     flex: 1
+  },
+  submit: {
+    width: 320,
+    margin: 5
   }
 };

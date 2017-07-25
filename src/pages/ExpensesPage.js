@@ -12,6 +12,7 @@ import {setResponsiveGrid} from '../utils';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
 import expensesContent from '../content/expenses';
+import commonStyles from '../utils/styles';
 
 export default class ExpensesPage extends Component {
   static navigationOptions = {
@@ -23,7 +24,9 @@ export default class ExpensesPage extends Component {
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.addExpenseItem = this.addExpenseItem.bind(this);
     this.columns = setResponsiveGrid(9);
-    this.expenseItems = [{}];
+    this.state = {
+      expenseItems: [{}]
+    };
   }
 
   onSubmitPressed() {
@@ -33,7 +36,8 @@ export default class ExpensesPage extends Component {
   }
 
   addExpenseItem() {
-    this.expenseItems.push({});
+    const newItems = this.state.expenseItems.concat({});
+    this.setState({expenseItems: newItems});
   }
 
   render() {
@@ -50,9 +54,10 @@ export default class ExpensesPage extends Component {
         }
         </View>
         {
-          this.expenseItems.map((e, index) => <ExpenseItem index={index} columnStyle={this.columns} /> )
+          this.state.expenseItems.map((e, index) => <ExpenseItem index={index} columnStyle={this.columns} /> )
         }
         <Button style={this.button} onPress={this.addExpenseItem} title="Add" />
+        <Button type = "button" title = "Submit" onPress = {this.onSubmitPressed} style = {styles.submit} />
       </ScrollView>
     );
   }
@@ -71,9 +76,7 @@ const styles = StyleSheet.create({
   text: {
     margin: 8
   },
-  button: {
-
-  }
+  submit: commonStyles.submit
 });
 
 AppRegistry.registerComponent('ExpensesPage', () => ExpensesPage);
