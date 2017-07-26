@@ -1,11 +1,18 @@
 export default [
-  'S.No.',
-  'Category',
-  'Sub-Category',
-  'Amount',
-  'Remarks',
-  'Spent On',
-  'Quantity',
-  'Engine Hrs',
-  'Extra numbers'
+  { field: 'S.No.', type: 'Text' },
+  { field: 'Category', type: 'Text', items: ['Diesel', 'Maintenance', 'Site', 'Cook', 'Pipe', 'Hammer', 'Bit'] },
+  { field: 'Sub-Category', type: 'Number', items: [
+    { Cook: ['Rice', 'Vegetables', 'Grocery', 'Masala', 'Floor', 'Non-Veg']},
+    { Tools: ['Hand tools', 'Grinder', 'Grinder Stones']},
+    { Road: ['RTO', 'Toll Fee']},
+    { Pipe: ['Rod', 'Casting-PVC', 'Casting-Metal']},
+    { Hammer: ['6-inch', '4-inch']},
+    { Bit: ['6-inch', '4-inch']}
+  ] },
+  { field: 'Amount', type: 'Text' },
+  { field: 'Remarks', type: 'Text' },
+  { field: 'Spent On', type: 'Text', items: ['Diesel', 'Maintenance', 'Site', 'Cook', 'Pipe', 'Hammer', 'Bit'] },
+  { field: 'Quantity', type: 'Text' },
+  { field: 'Engine Hrs', type: 'Text' },
+  { field: 'Extra numbers', type: 'Number' }
 ];

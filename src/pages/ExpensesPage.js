@@ -46,15 +46,15 @@ export default class ExpensesPage extends Component {
         <FormHeader />
         <View style = {styles.row}>
         {
-          expensesContent.map((e) => {
+          expensesContent.map((e, index) => {
             return (
-              <Text style={this.columns}>{e}</Text>
+              <Text key={index} style={this.columns}>{e.field}</Text>
             );
           })
         }
         </View>
         {
-          this.state.expenseItems.map((e, index) => <ExpenseItem index={index} columnStyle={this.columns} /> )
+          this.state.expenseItems.map((e, index) => <ExpenseItem key={index} index={index} columnStyle={this.columns} content={expensesContent} /> )
         }
         <Button style={this.button} onPress={this.addExpenseItem} title="Add" />
         <Button type = "button" title = "Submit" onPress = {this.onSubmitPressed} style = {styles.submit} />

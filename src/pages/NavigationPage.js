@@ -40,7 +40,7 @@ export default class NavigationPage extends Component {
         {
           items.map((i, index) => {
             return(
-              <Tile imgSrc = '' name = {i.name} link = {i.page} tileStyle={this.tile} onTileSelected={() => this.onTileSelected(index)} />
+              <Tile imgSrc = '' name = {i.name} key={index} link = {i.page} tileStyle={this.tile} onTileSelected={() => this.onTileSelected(index)} />
             );
           })
         }
