@@ -35,9 +35,9 @@ export default class EmployeeDetailsPage extends Component {
       <ScrollView contentContainerStyle = {styles.container}>
         <FormHeader />
         {
-          content.map((c) => {
+          content.map((c, index) => {
             return (
-              <View style={styles.row}>
+              <View key={index} style={styles.row}>
                 <Text style={this.columns}>{c.field}</Text>
                 {renderComponent(c.type, this.columns)}
               </View>

@@ -34,9 +34,9 @@ export default class BoreDetailsPage extends Component {
     return (
       <ScrollView contentContainerStyle = {styles.container}>
       {
-        boreDetailsContent.map((b) => {
+        boreDetailsContent.map((b, index) => {
           return (
-            <View style={styles.row}>
+            <View key={index} style={styles.row}>
               <Text style={this.columns}>{b.field}</Text>
               {renderComponent(b.type, this.columns)}
             </View>
