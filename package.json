@@ -5,7 +5,8 @@
   "scripts": {
     "start": "react-native run-android",
     "test": "jest",
-    "device": "/Users/zw28/Library/Android/sdk/tools/emulator -netdelay none -netspeed full -avd Nexus_6_API_23"
+    "device": "/Users/zw28/Library/Android/sdk/tools/emulator -netdelay none -netspeed full -avd Nexus_6_API_23",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "react": "16.0.0-alpha.6",
@@ -18,8 +19,17 @@
     "babel-jest": "20.0.0",
     "babel-preset-react-native": "1.9.1",
     "babel-preset-stage-3": "^6.24.1",
+    "husky": "^0.14.3",
     "jest": "20.0.0",
+    "lint-staged": "^4.0.2",
+    "prettier": "^1.5.3",
     "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "preset": "react-native"
