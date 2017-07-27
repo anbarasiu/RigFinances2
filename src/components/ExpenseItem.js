@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   AppRegistry,
   StyleSheet,
   TextInput,
   View,
   Text,
-  Picker,
-} from 'react-native';
-import {setResponsiveGrid} from '../utils';
+  Picker
+} from "react-native";
+import { setResponsiveGrid } from "../utils";
 
 export default class ExpenseItem extends Component {
   constructor() {
@@ -17,27 +17,27 @@ export default class ExpenseItem extends Component {
   }
 
   renderContent(index) {
-    this.props.content[index].items.map((c) => {
-      return (
-        <Picker.Item label={c} value={c} />
-      );
-    })
+    this.props.content[index].items.map(c => {
+      return <Picker.Item label={c} value={c} />;
+    });
   }
 
   render() {
     return (
-      <View style = {styles.container}>
-        <Text style={this.props.columnStyle}>{this.props.index}</Text>
-        <Picker style={this.props.columnStyle} >
-          { this.renderContent(1) }
+      <View style={styles.container}>
+        <Text style={this.props.columnStyle}>
+          {this.props.index}
+        </Text>
+        <Picker style={this.props.columnStyle}>
+          {this.renderContent(1)}
         </Picker>
-        <Picker style={this.props.columnStyle} >
-          { this.renderContent(2) }
+        <Picker style={this.props.columnStyle}>
+          {this.renderContent(2)}
         </Picker>
         <TextInput style={this.props.columnStyle} keyboardType="numeric" />
         <TextInput style={this.props.columnStyle} />
-        <Picker style={this.props.columnStyle} >
-          { this.renderContent(5) }
+        <Picker style={this.props.columnStyle}>
+          {this.renderContent(5)}
         </Picker>
         <TextInput style={this.props.columnStyle} keyboardType="numeric" />
         <TextInput style={this.props.columnStyle} keyboardType="numeric" />
@@ -50,8 +50,8 @@ export default class ExpenseItem extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+    flexDirection: "row",
+    justifyContent: "flex-start",
     height: 100
   },
   tabText: {
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('ExpenseItem', () => ExpenseItem);
+AppRegistry.registerComponent("ExpenseItem", () => ExpenseItem);
