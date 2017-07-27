@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -6,8 +6,8 @@ import {
   View,
   Text,
   Picker
-} from "react-native";
-import { setResponsiveGrid } from "../utils";
+} from 'react-native';
+import { setResponsiveGrid } from '../utils';
 
 export default class ExpenseItem extends Component {
   constructor() {
@@ -50,8 +50,8 @@ export default class ExpenseItem extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     height: 100
   },
   tabText: {
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent("ExpenseItem", () => ExpenseItem);
+AppRegistry.registerComponent('ExpenseItem', () => ExpenseItem);
