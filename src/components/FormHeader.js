@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  TextInput,
   Button,
   View,
   Text,
-  Image,
-  DatePickerAndroid,
-  TouchableHighlight
+  DatePickerAndroid
 } from 'react-native';
-import {setResponsiveGrid} from '../utils';
+import { setResponsiveGrid } from '../utils';
 
 export default class FormHeader extends Component {
   constructor() {
@@ -27,26 +24,27 @@ export default class FormHeader extends Component {
 
   async setDate() {
     try {
-      const {action, year, month, day} = await DatePickerAndroid.open({
+      const { action, year, month, day } = await DatePickerAndroid.open({
         // Use `new Date()` for current date.
         // May 25 2020. Month 0 is January.
         date: new Date()
       });
       if (action !== DatePickerAndroid.dismissedAction) {
-        this.setState({date: `${day}/${month+1}/${year}`});
+        this.setState({ date: `${day}/${month + 1}/${year}` });
       }
-    } catch ({code, message}) {
+    } catch ({ code, message }) {
       console.warn('Cannot open date picker', message);
     }
   }
 
   render() {
     return (
-      <View style = {styles.grid}>
+      <View style={styles.grid}>
         <Button
           style={this.tab}
           onPress={this.setDate}
-          title={this.state.date} />
+          title={this.state.date}
+        />
         <Text style={this.tab}>Total Amount</Text>
         <Text style={this.tab}>User</Text>
       </View>
