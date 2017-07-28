@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -10,13 +11,22 @@ import {
 import { setResponsiveGrid } from '../utils';
 
 export default class ExpenseItem extends Component {
+  props: {
+    index: number,
+    content: Array<any>,
+    columnStyle: Object
+  };
+
+  columns: Object;
+  renderContent: Function;
+
   constructor() {
     super();
     this.columns = setResponsiveGrid(9);
     this.renderContent = this.renderContent.bind(this);
   }
 
-  renderContent(index) {
+  renderContent(index: number) {
     this.props.content[index].items.map(c => {
       return <Picker.Item label={c} value={c} />;
     });
@@ -26,7 +36,7 @@ export default class ExpenseItem extends Component {
     return (
       <View style={styles.container}>
         <Text style={this.props.columnStyle}>
-          {this.props.index}
+          {this.props.index + 1}
         </Text>
         <Picker style={this.props.columnStyle}>
           {this.renderContent(1)}
