@@ -22,13 +22,23 @@ export function setResponsiveGrid(columns: number) {
   };
 }
 
-export function renderComponent(type: string, style: Object, content = []) {
+export function renderComponent(
+  type: string,
+  style: Object,
+  content = [],
+  handler,
+  selectedValue
+) {
   switch (type) {
     case 'Picker':
       return (
-        <Picker style={style}>
+        <Picker
+          style={style}
+          onValueChange={handler}
+          selectedValue={selectedValue}
+        >
           {content
-            .filter(c => typeof c === 'string') // TODO: Modify after normalizing data
+            // .filter(c => typeof c === 'string') // TODO: Modify after normalizing data
             .map((c, index) => <Picker.Item key={index} label={c} value={c} />)}
         </Picker>
       );
