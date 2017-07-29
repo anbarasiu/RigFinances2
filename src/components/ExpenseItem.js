@@ -12,7 +12,6 @@ import { renderComponent, setResponsiveGrid } from '../utils';
 
 export default class ExpenseItem extends Component {
   props: {
-    index: number,
     content: Array<any>,
     columnStyle: Object
   };
