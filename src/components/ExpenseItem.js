@@ -6,8 +6,13 @@ import { renderComponent, setResponsiveGrid } from '../utils';
 export default class ExpenseItem extends Component {
   constructor() {
     super();
+    this.state = {
+      category: '',
+      subcategory: ''
+    };
     this.columns = setResponsiveGrid(9);
-    this.renderContent = this.renderContent.bind(this);
+    this.categoryHandler = this.categoryHandler.bind(this);
+    this.subcategoryHandler = this.subcategoryHandler.bind(this);
   }
 
   props: {
@@ -16,25 +21,34 @@ export default class ExpenseItem extends Component {
   };
 
   columns: Object;
-  renderContent: Function;
+  categoryHandler: Function;
 
-  renderContent(index: number) {
-    this.props.content[index].items.map(c =>
-      <Picker.Item label={c} value={c} />
-    );
+  categoryHandler(selectedValue) {
+    this.setState({ category: selectedValue });
+  }
+
+  subcategoryHandler(selectedValue) {
+    this.setState({ subcategory: selectedValue });
   }
 
   render() {
+    const content = this.props.content;
     return (
       <View style={styles.container}>
-        {this.props.content.map((c, index) =>
-          renderComponent(
+        {content.map(c => {
+          const items =
+            c.items &&
+            (c.items.length ? c.items : c.items[this.state.category]);
+          const id = c.id;
+          return renderComponent(
             c.type,
             this.props.columnStyle,
-            this.props.content[index].items
-          )
-        )}
-        {/*}
+            items,
+            c.handler && this[`${id}Handler`],
+            this.state[id]
+          );
+        })}
+        {/* }
         <Text style={this.props.columnStyle}>
           {this.props.index + 1}
         </Text>
