@@ -1,5 +1,9 @@
 {
-    "extends": ["airbnb", "airbnb-flow"],
+    "extends": ["airbnb"],
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ],
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "comma-dangle" : 0

@@ -8,7 +8,7 @@ import {
   Text,
   Picker
 } from 'react-native';
-import { setResponsiveGrid } from '../utils';
+import { renderComponent, setResponsiveGrid } from '../utils';
 
 export default class ExpenseItem extends Component {
   props: {
@@ -35,6 +35,14 @@ export default class ExpenseItem extends Component {
   render() {
     return (
       <View style={styles.container}>
+        {this.props.content.map((c, index) =>
+          renderComponent(
+            c.type,
+            this.props.columnStyle,
+            this.props.content[index].items
+          )
+        )}
+        {/*}
         <Text style={this.props.columnStyle}>
           {this.props.index + 1}
         </Text>
@@ -52,6 +60,7 @@ export default class ExpenseItem extends Component {
         <TextInput style={this.props.columnStyle} keyboardType="numeric" />
         <TextInput style={this.props.columnStyle} keyboardType="numeric" />
         <TextInput style={this.props.columnStyle} keyboardType="numeric" />
+        */}
       </View>
     );
   }
