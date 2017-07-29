@@ -28,7 +28,7 @@ export function renderComponent(type: string, style: Object, content = []) {
       return (
         <Picker style={style}>
           {content
-            .filter(c => typeof c === 'string') //TODO: Modify after normalizing data
+            .filter(c => typeof c === 'string') // TODO: Modify after normalizing data
             .map((c, index) => <Picker.Item key={index} label={c} value={c} />)}
         </Picker>
       );
