@@ -1,16 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  TextInput,
-  View,
-  Text,
-  Picker
-} from 'react-native';
+import { AppRegistry, StyleSheet, View, Picker } from 'react-native';
 import { renderComponent, setResponsiveGrid } from '../utils';
 
 export default class ExpenseItem extends Component {
+  constructor() {
+    super();
+    this.columns = setResponsiveGrid(9);
+    this.renderContent = this.renderContent.bind(this);
+  }
+
   props: {
     content: Array<any>,
     columnStyle: Object
@@ -19,16 +18,10 @@ export default class ExpenseItem extends Component {
   columns: Object;
   renderContent: Function;
 
-  constructor() {
-    super();
-    this.columns = setResponsiveGrid(9);
-    this.renderContent = this.renderContent.bind(this);
-  }
-
   renderContent(index: number) {
-    this.props.content[index].items.map(c => {
-      return <Picker.Item label={c} value={c} />;
-    });
+    this.props.content[index].items.map(c =>
+      <Picker.Item label={c} value={c} />
+    );
   }
 
   render() {
