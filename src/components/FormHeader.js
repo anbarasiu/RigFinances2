@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Button,
-  View,
-  Text,
-  DatePickerAndroid
-} from 'react-native';
+import { Text, Button } from 'native-base';
+import { AppRegistry, DatePickerAndroid } from 'react-native';
+import { Col, Grid } from 'react-native-easy-grid';
 import { setResponsiveGrid } from '../utils';
 
 export default class FormHeader extends Component {
@@ -39,29 +34,19 @@ export default class FormHeader extends Component {
 
   render() {
     return (
-      <View style={styles.grid}>
-        <Button
-          style={this.tab}
-          onPress={this.setDate}
-          title={this.state.date}
-        />
-        <Text style={this.tab}>Total Amount</Text>
-        <Text style={this.tab}>User</Text>
-      </View>
+      <Grid>
+        <Col>
+          <Button onPress={this.setDate} title={this.state.date} />
+        </Col>
+        <Col>
+          <Text style={this.tab}>Total Amount</Text>
+        </Col>
+        <Col>
+          <Text style={this.tab}>User</Text>
+        </Col>
+      </Grid>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  grid: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    height: 50
-  },
-  tabText: {
-    fontSize: 20
-  }
-});
 
 AppRegistry.registerComponent('FormHeader', () => FormHeader);

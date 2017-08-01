@@ -1,4 +1,7 @@
 import { Schema, arrayOf } from 'normalizr';
-const expensesSchema = Schema('expenses');
+const items = Schema('items');
+expensesSchema.define({
+  expenses: arrayOf(items)
+});
 
 export { expensesSchema };

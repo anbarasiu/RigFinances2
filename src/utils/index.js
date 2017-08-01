@@ -23,29 +23,42 @@ export function setResponsiveGrid(columns: number) {
 }
 
 export function renderComponent(
+  id: string,
   type: string,
   style: Object,
   content = [],
-  handler,
-  selectedValue
+  value,
+  handler
 ) {
   switch (type) {
     case 'Picker':
       return (
         <Picker
           style={style}
-          onValueChange={handler}
-          selectedValue={selectedValue}
+          onValueChange={id => {
+            handler(id);
+          }}
+          selectedValue={value}
         >
-          {content
-            // .filter(c => typeof c === 'string') // TODO: Modify after normalizing data
-            .map((c, index) => <Picker.Item key={index} label={c} value={c} />)}
+          {content.map(c => <Picker.Item key={id} label={c} value={c} />)}
         </Picker>
       );
     case 'Number':
-      return <TextInput style={style} keyboardType="numeric" />;
+      return (
+        <TextInput
+          style={style}
+          keyboardType="numeric"
+          onChangeText={handler}
+        />
+      );
     case 'TimePicker':
-      return <TextInput style={style} keyboardType="numeric" />;
+      return (
+        <TextInput
+          style={style}
+          keyboardType="numeric"
+          onChangeText={handler}
+        />
+      );
     default:
       return <TextInput style={style} />;
   }
