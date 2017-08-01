@@ -8,11 +8,14 @@ export default class ExpenseItem extends Component {
     super();
     this.state = {
       category: '',
-      subcategory: ''
+      subcategory: '',
+      spenton: ''
     };
     this.columns = setResponsiveGrid(9);
     this.categoryHandler = this.categoryHandler.bind(this);
     this.subcategoryHandler = this.subcategoryHandler.bind(this);
+    this.spentonHandler = this.spentonHandler.bind(this);
+    this.updateValue = this.updateValue.bind(this);
   }
 
   props: {
@@ -31,6 +34,14 @@ export default class ExpenseItem extends Component {
     this.setState({ subcategory: selectedValue });
   }
 
+  spentonHandler(selectedValue) {
+    this.setState({ spenton: selectedValue });
+  }
+
+  updateValue(id, selectedValue) {
+    this.setState({ [id]: selectedValue });
+  }
+
   render() {
     const content = this.props.content;
     return (
@@ -41,32 +52,15 @@ export default class ExpenseItem extends Component {
             (c.items.length ? c.items : c.items[this.state.category]);
           const id = c.id;
           return renderComponent(
+            id,
             c.type,
             this.props.columnStyle,
             items,
-            c.handler && this[`${id}Handler`],
-            this.state[id]
+            this.state[id],
+            // c.handler && this[`${id}Handler`]
+            this.updateValue
           );
         })}
-        {/* }
-        <Text style={this.props.columnStyle}>
-          {this.props.index + 1}
-        </Text>
-        <Picker style={this.props.columnStyle}>
-          {this.renderContent(1)}
-        </Picker>
-        <Picker style={this.props.columnStyle}>
-          {this.renderContent(2)}
-        </Picker>
-        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
-        <TextInput style={this.props.columnStyle} />
-        <Picker style={this.props.columnStyle}>
-          {this.renderContent(5)}
-        </Picker>
-        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
-        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
-        <TextInput style={this.props.columnStyle} keyboardType="numeric" />
-        */}
       </View>
     );
   }

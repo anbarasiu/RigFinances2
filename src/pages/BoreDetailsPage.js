@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  TextInput,
-  Button,
-  Text,
-  View,
-  ScrollView,
-  Picker
-} from 'react-native';
+import { AppRegistry, StyleSheet, View } from 'react-native';
+import { Container, Text, Content, Button } from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
-import {renderComponent, setResponsiveGrid} from '../utils';
+import { renderComponent, setResponsiveGrid } from '../utils';
 import commonStyles from '../utils/styles';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
-    title: 'Bore Details',
+    title: 'Bore Details'
   };
 
   constructor() {
@@ -32,19 +24,21 @@ export default class BoreDetailsPage extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle = {styles.container}>
-      {
-        boreDetailsContent.map((b, index) => {
-          return (
-            <View key={index} style={styles.row}>
-              <Text style={this.columns}>{b.field}</Text>
-              {renderComponent(b.type, this.columns)}
-            </View>
-          );
-        })
-      }
-      <Button type = "button" title = "Submit" onPress = {this.onSubmitPressed} style = {styles.submit} />
-      </ScrollView>
+      <Container style={styles.row}>
+        <Content>
+          {boreDetailsContent.map((b, index) => {
+            return (
+              <View>
+                <Text>
+                  {b.field}
+                </Text>
+                {renderComponent(b.type, this.columns)}
+              </View>
+            );
+          })}
+          <Button type="button" title="Submit" onPress={this.onSubmitPressed} />
+        </Content>
+      </Container>
     );
   }
 }
