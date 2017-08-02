@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  TextInput,
-  Button,
-  View,
-  Text,
-  ScrollView
-} from 'react-native';
+import { AppRegistry, StyleSheet } from 'react-native';
+import { Container, Button, Text } from 'native-base';
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeDetails';
-import {renderComponent, setResponsiveGrid} from '../utils';
+import { renderComponent } from '../utils';
 import commonStyles from '../utils/styles';
 
 export default class EmployeeMasterPage extends Component {
   static navigationOptions = {
-    title: 'Employee Master',
+    title: 'Employee Master'
   };
 
   constructor() {
     super();
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
-    this.columns = setResponsiveGrid(2);
   }
 
   onSubmitPressed() {
@@ -32,20 +24,25 @@ export default class EmployeeMasterPage extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle = {styles.container}>
+      <Container>
         <FormHeader />
-        {
-          content.map((c, index) => {
-            return (
-              <View key={index} style={styles.row}>
-                <Text style={this.columns}>{c.field}</Text>
-                {renderComponent(c.type, this.columns)}
-              </View>
-            );
-          })
-        }
-        <Button type = "button" title = "Submit" onPress = {this.onSubmitPressed} style = {styles.submit} />
-      </ScrollView>
+        {content.map((c, index) => {
+          return (
+            <Container key={index} style={styles.row}>
+              <Text style={this.columns}>
+                {c.field}
+              </Text>
+              {renderComponent(c.type, this.columns)}
+            </Container>
+          );
+        })}
+        <Button
+          type="button"
+          title="Submit"
+          onPress={this.onSubmitPressed}
+          style={styles.submit}
+        />
+      </Container>
     );
   }
 }
