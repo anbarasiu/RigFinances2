@@ -1,61 +1,44 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  TextInput,
-  Button,
-  View
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import { Container } from 'native-base';
+import { Col, Grid } from 'react-native-easy-grid';
 import Tile from '../components/Tile';
 import items from '../constants';
-import {vh, vw} from '../utils';
 
 export default class NavigationPage extends Component {
-
   constructor() {
     super();
     this.onTileSelected = this.onTileSelected.bind(this);
-
-    const COLUMNS = 3;
-    const MARGIN = vw(1);
-    const SPACING = (COLUMNS + 1) / COLUMNS * MARGIN;
-
-    this.tile = {
-      marginLeft: MARGIN,
-      marginTop: MARGIN,
-      width: vw(100) / COLUMNS - SPACING,
-      height: 150
-    };
   }
 
   onTileSelected(index) {
     // Navigate to selected activity
     const { navigate } = this.props.navigation;
-    navigate('Content', {tab: items[index].page});
+    navigate('Content', { tab: items[index].page });
   }
 
   render() {
     return (
-      <View style = {styles.grid}>
-        {
-          items.map((i, index) => {
-            return(
-              <Tile imgSrc = '' name = {i.name} key={index} link = {i.page} tileStyle={this.tile} onTileSelected={() => this.onTileSelected(index)} />
+      <Container>
+        <Grid>
+          {items.map((i, index) => {
+            return (
+              <Col>
+                <Tile
+                  imgSrc=""
+                  name={i.name}
+                  key={index}
+                  link={i.page}
+                  tileStyle={this.tile}
+                  onTileSelected={() => this.onTileSelected(index)}
+                />
+              </Col>
             );
-          })
-        }
-      </View>
+          })}
+        </Grid>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  grid: {
-    flex: 1,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'flex-start'
-  }
-});
 
 AppRegistry.registerComponent('NavigationPage', () => NavigationPage);

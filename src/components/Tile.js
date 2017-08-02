@@ -1,38 +1,17 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  TouchableHighlight,
-  Text,
-  Image,
-  View
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import { Button, Text } from 'native-base';
 
 export default class Tile extends Component {
-
   render() {
     return (
-      <TouchableHighlight onPress={this.props.onTileSelected} style = {this.props.tileStyle}>
-        <View style = {styles.containerView}>
-          <Image style = {styles.tileImg} />
-          <Text style = {styles.tileText}>{this.props.name}</Text>
-        </View>
-      </TouchableHighlight>
+      <Button onPress={this.props.onTileSelected}>
+        <Text>
+          {this.props.name}
+        </Text>
+      </Button>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  containerView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2756A4' //162E3E
-  },
-  tileText: {
-    fontSize: 20,
-    color: 'white'
-  }
-});
 
 AppRegistry.registerComponent('Tile', () => Tile);

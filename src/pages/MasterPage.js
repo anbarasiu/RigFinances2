@@ -19,7 +19,7 @@ export default class MasterPage extends Component {
   render() {
     return (
       <Container>
-        <Tabs initialPage={1}>
+        <Tabs initialPage={0}>
           <Tab heading="Expenses">
             <ExpensesPage />
           </Tab>
