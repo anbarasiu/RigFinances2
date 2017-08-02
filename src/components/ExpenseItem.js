@@ -1,7 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, View, Picker } from 'react-native';
-import { renderComponent, setResponsiveGrid } from '../utils';
+import { AppRegistry } from 'react-native';
+import { Grid, Col } from 'native-base';
+import { renderComponent } from '../utils';
 
 export default class ExpenseItem extends Component {
   constructor() {
@@ -11,7 +12,6 @@ export default class ExpenseItem extends Component {
       subcategory: '',
       spenton: ''
     };
-    this.columns = setResponsiveGrid(9);
     this.categoryHandler = this.categoryHandler.bind(this);
     this.subcategoryHandler = this.subcategoryHandler.bind(this);
     this.spentonHandler = this.spentonHandler.bind(this);
@@ -45,37 +45,29 @@ export default class ExpenseItem extends Component {
   render() {
     const content = this.props.content;
     return (
-      <View style={styles.container}>
+      <Grid>
         {content.map(c => {
           const items =
             c.items &&
             (c.items.length ? c.items : c.items[this.state.category]);
           const id = c.id;
-          return renderComponent(
-            id,
-            c.type,
-            this.props.columnStyle,
-            items,
-            this.state[id],
-            // c.handler && this[`${id}Handler`]
-            this.updateValue
+          return (
+            <Col>
+              {renderComponent(
+                id,
+                c.type,
+                this.props.columnStyle,
+                items,
+                this.state[id],
+                // c.handler && this[`${id}Handler`]
+                this.updateValue
+              )}
+            </Col>
           );
         })}
-      </View>
+      </Grid>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    height: 100
-  },
-  tabText: {
-    fontSize: 20
-  }
-});
 
 AppRegistry.registerComponent('ExpenseItem', () => ExpenseItem);

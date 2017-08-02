@@ -1,13 +1,13 @@
 // @flow
 import React from 'react';
-import { Dimensions, TextInput, Picker } from 'react-native';
+import { Input, Picker } from 'native-base';
 
 export function vw(percentageWidth: number) {
-  return Dimensions.get('window').width * (percentageWidth / 100);
+  // return Dimensions.get('window').width * (percentageWidth / 100);
 }
 
 export function vh(percentageHeight: number) {
-  return Dimensions.get('window').height * (percentageHeight / 100);
+  // return Dimensions.get('window').height * (percentageHeight / 100);
 }
 
 export function setResponsiveGrid(columns: number) {
@@ -45,21 +45,13 @@ export function renderComponent(
       );
     case 'Number':
       return (
-        <TextInput
-          style={style}
-          keyboardType="numeric"
-          onChangeText={handler}
-        />
+        <Input style={style} keyboardType="numeric" onChangeText={handler} />
       );
     case 'TimePicker':
       return (
-        <TextInput
-          style={style}
-          keyboardType="numeric"
-          onChangeText={handler}
-        />
+        <Input style={style} keyboardType="numeric" onChangeText={handler} />
       );
     default:
-      return <TextInput style={style} />;
+      return <Input style={style} />;
   }
 }
