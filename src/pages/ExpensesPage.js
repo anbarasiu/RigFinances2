@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet } from 'react-native';
-import { Container, Button, Text, Grid, Col } from 'native-base';
+import { Container, Button, Text } from 'native-base';
+import { Col, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
 import expensesContent from '../content/expenses';
@@ -55,13 +56,17 @@ export default class ExpensesPage extends Component {
             content={expensesContent}
           />
         )}
-        <Button style={this.button} onPress={this.addExpenseItem} title="Add" />
+        <Button style={this.button} onPress={this.addExpenseItem}>
+          <Text>Add</Text>
+        </Button>
         <Button
           type="button"
           title="Submit"
           onPress={this.onSubmitPressed}
           style={styles.submit}
-        />
+        >
+          <Text>Submit</Text>
+        </Button>
       </Container>
     );
   }

@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  TextInput,
-  Button,
-  View
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import { Container, Form, Button, Input, Text, Item, Label } from 'native-base';
 
 export default class LoginPage extends Component {
   static navigationOptions = {
-    title: 'Login',
+    title: 'Login'
   };
 
   constructor() {
@@ -25,25 +20,23 @@ export default class LoginPage extends Component {
 
   render() {
     return (
-      <View style = {styles.container}>
-        <TextInput name = "username" type = "text" placeholder = "User Name" style = {styles.input}/>
-        <TextInput name = "password" type = "password" placeholder = "Password" style = {styles.input} />
-        <Button type = "button" title = "Enter" onPress = {this.onSubmitPressed} style = {styles.input} />
-      </View>
+      <Container>
+        <Form>
+          <Item fixedLabel>
+            <Label>Username</Label>
+            <Input name="username" type="text" placeholder="User Name" />
+          </Item>
+          <Item fixedLabel>
+            <Label>Password</Label>
+            <Input name="password" type="password" placeholder="Password" />
+          </Item>
+          <Button type="button" onPress={this.onSubmitPressed}>
+            <Text>Enter</Text>
+          </Button>
+        </Form>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1
-  },
-  input: {
-    width: 320
-  }
-});
 
 AppRegistry.registerComponent('LoginPage', () => LoginPage);

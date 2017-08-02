@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, Button } from 'native-base';
 import { AppRegistry, DatePickerAndroid } from 'react-native';
+import { Text, Button, Label } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 import { setResponsiveGrid } from '../utils';
 
@@ -36,7 +36,11 @@ export default class FormHeader extends Component {
     return (
       <Grid>
         <Col>
-          <Button onPress={this.setDate} title={this.state.date} />
+          <Button onPress={this.setDate}>
+            <Label>
+              {this.state.date}
+            </Label>
+          </Button>
         </Col>
         <Col>
           <Text style={this.tab}>Total Amount</Text>

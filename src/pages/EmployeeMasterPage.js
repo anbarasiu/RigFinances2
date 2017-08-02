@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet } from 'react-native';
-import { Container, Button, Text } from 'native-base';
+import { Container, Button, Text, Form } from 'native-base';
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeDetails';
 import { renderComponent } from '../utils';
@@ -41,7 +41,9 @@ export default class EmployeeMasterPage extends Component {
           title="Submit"
           onPress={this.onSubmitPressed}
           style={styles.submit}
-        />
+        >
+          <Text>Submit</Text>
+        </Button>
       </Container>
     );
   }

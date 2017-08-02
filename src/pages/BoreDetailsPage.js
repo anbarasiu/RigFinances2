@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, View } from 'react-native';
-import { Container, Text, Content, Button } from 'native-base';
+import { Container, Text, Content, Button, Form } from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
+import FormHeader from '../components/FormHeader';
 import { renderComponent, setResponsiveGrid } from '../utils';
 import commonStyles from '../utils/styles';
 
@@ -26,17 +27,22 @@ export default class BoreDetailsPage extends Component {
     return (
       <Container style={styles.row}>
         <Content>
-          {boreDetailsContent.map((b, index) => {
-            return (
-              <View>
-                <Text>
-                  {b.field}
-                </Text>
-                {renderComponent(b.type, this.columns)}
-              </View>
-            );
-          })}
-          <Button type="button" title="Submit" onPress={this.onSubmitPressed} />
+          <Form>
+            <FormHeader />
+            {boreDetailsContent.map((b, index) => {
+              return (
+                <View>
+                  <Text>
+                    {b.field}
+                  </Text>
+                  {renderComponent(b.type, this.columns)}
+                </View>
+              );
+            })}
+            <Button type="button" onPress={this.onSubmitPressed}>
+              <Text>Submit</Text>
+            </Button>
+          </Form>
         </Content>
       </Container>
     );
