@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import { Container, Form, Button, Input, Text, Item, Label } from 'native-base';
@@ -18,19 +19,28 @@ export default class LoginPage extends Component {
     navigate('Navigation');
   }
 
+  props: {
+    navigation: Object
+  };
+
   render() {
     return (
       <Container>
-        <Form>
-          <Item fixedLabel>
+        <Form style={{ marginTop: 50 }}>
+          <Item>
             <Label>Username</Label>
-            <Input name="username" type="text" placeholder="User Name" />
+            <Input name="username" type="text" />
           </Item>
-          <Item fixedLabel>
+          <Item>
             <Label>Password</Label>
-            <Input name="password" type="password" placeholder="Password" />
+            <Input name="password" type="password" />
           </Item>
-          <Button type="button" onPress={this.onSubmitPressed}>
+          <Button
+            style={{ marginTop: 50 }}
+            type="button"
+            block
+            onPress={this.onSubmitPressed}
+          >
             <Text>Enter</Text>
           </Button>
         </Form>

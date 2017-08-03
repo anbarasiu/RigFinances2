@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import { Container, Tab, Tabs } from 'native-base';
@@ -16,10 +17,14 @@ export default class MasterPage extends Component {
     super();
   }
 
+  props: {
+    navigation: Object
+  };
+
   render() {
     return (
       <Container>
-        <Tabs initialPage={0}>
+        <Tabs initialPage={this.props.navigation.state.params.tab}>
           <Tab heading="Expenses">
             <ExpensesPage />
           </Tab>
