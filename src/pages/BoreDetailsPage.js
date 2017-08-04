@@ -1,10 +1,18 @@
+// @flow
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, View } from 'react-native';
-import { Container, Text, Content, Button, Form } from 'native-base';
+import { AppRegistry } from 'react-native';
+import {
+  Container,
+  Text,
+  Content,
+  Button,
+  Form,
+  Item,
+  Label
+} from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
 import FormHeader from '../components/FormHeader';
-import { renderComponent, setResponsiveGrid } from '../utils';
-import commonStyles from '../utils/styles';
+import { renderComponent } from '../utils';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -13,30 +21,58 @@ export default class BoreDetailsPage extends Component {
 
   constructor() {
     super();
+    this.state = {
+      type: '',
+      hammerSize: '',
+      bitSize: '',
+      pipeMaterial: '',
+      pipeSize: '',
+      bitLoss: '',
+      customer: ''
+    };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
-    this.columns = setResponsiveGrid(2);
+    this.updateValue = this.updateValue.bind(this);
   }
 
+  state: {
+    type: string,
+    hammerSize: string,
+    bitSize: string,
+    pipeMaterial: string,
+    pipeSize: string,
+    bitLoss: string,
+    customer: string
+  };
+
   onSubmitPressed() {
-    // Navigate to navigation activity
-    const { navigate } = this.props.navigation;
-    navigate('Navigation');
+    console.log(this);
+  }
+
+  updateValue(id, selectedValue) {
+    this.setState({ [id]: selectedValue });
   }
 
   render() {
     return (
-      <Container style={styles.row}>
+      <Container>
         <Content>
           <Form>
             <FormHeader />
             {boreDetailsContent.map((b, index) => {
               return (
-                <View>
-                  <Text>
+                <Item>
+                  <Label>
                     {b.field}
-                  </Text>
-                  {renderComponent(b.type, this.columns)}
-                </View>
+                  </Label>
+                  {renderComponent(
+                    b.id,
+                    b.type,
+                    {},
+                    b.items,
+                    this.state[b.id] || index + 1,
+                    this.updateValue
+                  )}
+                </Item>
               );
             })}
             <Button type="button" onPress={this.onSubmitPressed}>
@@ -48,15 +84,5 @@ export default class BoreDetailsPage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  row: commonStyles.row,
-  submit: commonStyles.submit
-});
 
 AppRegistry.registerComponent('BoreDetailsPage', () => BoreDetailsPage);

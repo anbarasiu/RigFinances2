@@ -1,6 +1,7 @@
+// @flow
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet } from 'react-native';
-import { Container, Button, Text } from 'native-base';
+import { Container, Button, Text, Form } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
@@ -16,16 +17,13 @@ export default class ExpensesPage extends Component {
     super();
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.addExpenseItem = this.addExpenseItem.bind(this);
-    // this.columns = setResponsiveGrid(9);
     this.state = {
       expenseItems: [{}]
     };
   }
 
   onSubmitPressed() {
-    // Navigate to navigation activity
-    const { navigate } = this.props.navigation;
-    navigate('Navigation');
+    console.log(this);
   }
 
   addExpenseItem() {
@@ -36,37 +34,39 @@ export default class ExpensesPage extends Component {
   render() {
     return (
       <Container>
-        <FormHeader />
-        <Grid>
-          {expensesContent.map((e, index) => {
-            return (
-              <Col>
-                <Text key={index} style={this.columns}>
-                  {e.field}
-                </Text>
-              </Col>
-            );
-          })}
-        </Grid>
-        {this.state.expenseItems.map((e, index) =>
-          <ExpenseItem
-            key={index}
-            index={index}
-            columnStyle={this.columns}
-            content={expensesContent}
-          />
-        )}
-        <Button style={this.button} onPress={this.addExpenseItem}>
-          <Text>Add</Text>
-        </Button>
-        <Button
-          type="button"
-          title="Submit"
-          onPress={this.onSubmitPressed}
-          style={styles.submit}
-        >
-          <Text>Submit</Text>
-        </Button>
+        <Form>
+          <FormHeader />
+          <Grid>
+            {expensesContent.map((e, index) => {
+              return (
+                <Col>
+                  <Text key={index} style={this.columns}>
+                    {e.field}
+                  </Text>
+                </Col>
+              );
+            })}
+          </Grid>
+          {this.state.expenseItems.map((e, index) =>
+            <ExpenseItem
+              key={index}
+              index={index}
+              columnStyle={this.columns}
+              content={expensesContent}
+            />
+          )}
+          <Button style={this.button} onPress={this.addExpenseItem}>
+            <Text>Add</Text>
+          </Button>
+          <Button
+            type="button"
+            title="Submit"
+            onPress={this.onSubmitPressed}
+            style={styles.submit}
+          >
+            <Text>Submit</Text>
+          </Button>
+        </Form>
       </Container>
     );
   }

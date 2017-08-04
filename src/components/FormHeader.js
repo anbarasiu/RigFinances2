@@ -1,8 +1,8 @@
+// @flow
 import React, { Component } from 'react';
 import { AppRegistry, DatePickerAndroid } from 'react-native';
 import { Text, Button, Label } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
-import { setResponsiveGrid } from '../utils';
 
 export default class FormHeader extends Component {
   constructor() {
@@ -11,8 +11,6 @@ export default class FormHeader extends Component {
     this.state = {
       date: 'Select Date'
     };
-    const columns = 3;
-    this.tab = setResponsiveGrid(columns);
 
     this.setDate = this.setDate.bind(this);
   }
