@@ -1,17 +1,15 @@
 export default [
-  { id: 'sno', field: 'S.No.', type: 'Text' },
+  { id: 'sno', field: 'S.No.' },
   {
     id: 'category',
     field: 'Category',
     type: 'Picker',
-    handler: true,
     items: ['Diesel', 'Maintenance', 'Site', 'Cook', 'Pipe', 'Hammer', 'Bit']
   },
   {
     id: 'subcategory',
     field: 'Sub-Category',
     type: 'Picker',
-    handler: true,
     items: {
       Cook: ['Rice', 'Vegetables', 'Grocery', 'Masala', 'Floor', 'Non-Veg'],
       Tools: ['Hand tools', 'Grinder', 'Grinder Stones'],
@@ -27,7 +25,6 @@ export default [
     id: 'spenton',
     field: 'Spent On',
     type: 'Picker',
-    handler: true,
     items: ['Diesel', 'Maintenance', 'Site', 'Cook', 'Pipe', 'Hammer', 'Bit']
   },
   { id: 'quantity', field: 'Quantity', type: 'Text' },

@@ -12,31 +12,17 @@ export default class ExpenseItem extends Component {
       subcategory: '',
       spenton: ''
     };
-    this.categoryHandler = this.categoryHandler.bind(this);
-    this.subcategoryHandler = this.subcategoryHandler.bind(this);
-    this.spentonHandler = this.spentonHandler.bind(this);
     this.updateValue = this.updateValue.bind(this);
   }
 
   props: {
     content: Array<any>,
-    columnStyle: Object
+    columnStyle: Object,
+    index: number
   };
 
   columns: Object;
   categoryHandler: Function;
-
-  categoryHandler(selectedValue) {
-    this.setState({ category: selectedValue });
-  }
-
-  subcategoryHandler(selectedValue) {
-    this.setState({ subcategory: selectedValue });
-  }
-
-  spentonHandler(selectedValue) {
-    this.setState({ spenton: selectedValue });
-  }
 
   updateValue(id, selectedValue) {
     this.setState({ [id]: selectedValue });
@@ -58,8 +44,7 @@ export default class ExpenseItem extends Component {
                 c.type,
                 this.props.columnStyle,
                 items,
-                this.state[id],
-                // c.handler && this[`${id}Handler`]
+                this.state[id] || this.props.index + 1,
                 this.updateValue
               )}
             </Col>

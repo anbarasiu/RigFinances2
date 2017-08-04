@@ -17,33 +17,33 @@ export default class EmployeeDetailsPage extends Component {
   }
 
   onSubmitPressed() {
-    // Navigate to navigation activity
-    const { navigate } = this.props.navigation;
-    navigate('Navigation');
+    console.log(this);
   }
 
   render() {
     return (
       <Container>
-        <FormHeader />
-        {content.map((c, index) => {
-          return (
-            <Container key={index} style={styles.row}>
-              <Text style={this.columns}>
-                {c.field}
-              </Text>
-              {renderComponent(c.type, this.columns)}
-            </Container>
-          );
-        })}
-        <Button
-          type="button"
-          title="Submit"
-          onPress={this.onSubmitPressed}
-          style={styles.submit}
-        >
-          <Text>Submit</Text>
-        </Button>
+        <Form>
+          <FormHeader />
+          {content.map((c, index) => {
+            return (
+              <Container key={index} style={styles.row}>
+                <Text style={this.columns}>
+                  {c.field}
+                </Text>
+                {renderComponent(c.type, this.columns)}
+              </Container>
+            );
+          })}
+          <Button
+            type="button"
+            title="Submit"
+            onPress={this.onSubmitPressed}
+            style={styles.submit}
+          >
+            <Text>Submit</Text>
+          </Button>
+        </Form>
       </Container>
     );
   }

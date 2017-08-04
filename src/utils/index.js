@@ -1,26 +1,6 @@
 // @flow
 import React from 'react';
-import { Input, Picker } from 'native-base';
-
-export function vw(percentageWidth: number) {
-  // return Dimensions.get('window').width * (percentageWidth / 100);
-}
-
-export function vh(percentageHeight: number) {
-  // return Dimensions.get('window').height * (percentageHeight / 100);
-}
-
-export function setResponsiveGrid(columns: number) {
-  const COLUMNS = columns;
-  const MARGIN = vw(1);
-  const SPACING = (COLUMNS + 1) / COLUMNS * MARGIN;
-
-  return {
-    marginLeft: MARGIN,
-    marginTop: MARGIN,
-    width: vw(100) / COLUMNS - SPACING
-  };
-}
+import { Input, Picker, Text } from 'native-base';
 
 export function renderComponent(
   id: string,
@@ -35,8 +15,8 @@ export function renderComponent(
       return (
         <Picker
           style={style}
-          onValueChange={id => {
-            handler(id);
+          onValueChange={selectedValue => {
+            handler(id, selectedValue);
           }}
           selectedValue={value}
         >
@@ -47,11 +27,17 @@ export function renderComponent(
       return (
         <Input style={style} keyboardType="numeric" onChangeText={handler} />
       );
+    case 'Text':
+      return <Input style={style} onChangeText={handler} />;
     case 'TimePicker':
       return (
         <Input style={style} keyboardType="numeric" onChangeText={handler} />
       );
     default:
-      return <Input style={style} />;
+      return (
+        <Text style={style}>
+          {value}
+        </Text>
+      );
   }
 }
