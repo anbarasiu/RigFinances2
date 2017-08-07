@@ -1,10 +1,18 @@
+// @flow
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet } from 'react-native';
-import { Container, Button, Text, Form } from 'native-base';
+import { AppRegistry } from 'react-native';
+import {
+  Container,
+  Content,
+  Button,
+  Text,
+  Form,
+  Item,
+  Label
+} from 'native-base';
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeDetails';
-import { renderComponent } from '../utils';
-import commonStyles from '../utils/styles';
+import renderComponent from '../utils';
 
 export default class EmployeeDetailsPage extends Component {
   static navigationOptions = {
@@ -13,51 +21,58 @@ export default class EmployeeDetailsPage extends Component {
 
   constructor() {
     super();
+    this.state = {
+      name: '',
+      process: '',
+      date: ''
+    };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
+    this.updateValue = this.updateValue.bind(this);
   }
+
+  state: {
+    name: string,
+    process: string,
+    date: string
+  };
 
   onSubmitPressed() {
     console.log(this);
   }
 
+  updateValue(id, selectedValue) {
+    this.setState({ [id]: selectedValue });
+  }
+
   render() {
     return (
       <Container>
-        <Form>
-          <FormHeader />
-          {content.map((c, index) => {
-            return (
-              <Container key={index} style={styles.row}>
-                <Text style={this.columns}>
-                  {c.field}
-                </Text>
-                {renderComponent(c.type, this.columns)}
-              </Container>
-            );
-          })}
-          <Button
-            type="button"
-            title="Submit"
-            onPress={this.onSubmitPressed}
-            style={styles.submit}
-          >
-            <Text>Submit</Text>
-          </Button>
-        </Form>
+        <Content>
+          <Form>
+            <FormHeader />
+            {content.map((c, index) => {
+              return (
+                <Item>
+                  <Label>
+                    {c.field}
+                  </Label>
+                  {renderComponent(c.type, this.columns)}
+                </Item>
+              );
+            })}
+            <Button
+              type="button"
+              title="Submit"
+              onPress={this.onSubmitPressed}
+              block
+            >
+              <Text>Submit</Text>
+            </Button>
+          </Form>
+        </Content>
       </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1
-  },
-  row: commonStyles.row,
-  submit: commonStyles.submit
-});
 
 AppRegistry.registerComponent('EmployeeDetailsPage', () => EmployeeDetailsPage);

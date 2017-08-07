@@ -1,5 +1,5 @@
 export default [
-  { field:'Category', type: 'Picker' },
-  { field:'Sub-Category', type: 'Picker' },
-  { field:'Spent On', type: 'Picker' }
+  { id: 'category', field: 'Category', type: 'Picker' },
+  { id: 'subcategory', field: 'Sub-Category', type: 'Picker' },
+  { id: 'spenton', field: 'Spent On', type: 'Picker' }
 ];

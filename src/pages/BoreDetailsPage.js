@@ -12,7 +12,7 @@ import {
 } from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
 import FormHeader from '../components/FormHeader';
-import { renderComponent } from '../utils';
+import renderComponent from '../utils';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -27,7 +27,7 @@ export default class BoreDetailsPage extends Component {
       bitSize: '',
       pipeMaterial: '',
       pipeSize: '',
-      bitLoss: '',
+      bitLoss: false,
       customer: ''
     };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
@@ -40,7 +40,7 @@ export default class BoreDetailsPage extends Component {
     bitSize: string,
     pipeMaterial: string,
     pipeSize: string,
-    bitLoss: string,
+    bitLoss: boolean,
     customer: string
   };
 
@@ -75,7 +75,7 @@ export default class BoreDetailsPage extends Component {
                 </Item>
               );
             })}
-            <Button type="button" onPress={this.onSubmitPressed}>
+            <Button type="button" onPress={this.onSubmitPressed} block>
               <Text>Submit</Text>
             </Button>
           </Form>
