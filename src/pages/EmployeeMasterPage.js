@@ -1,10 +1,18 @@
+// @flow
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet } from 'react-native';
-import { Container, Button, Text, Form } from 'native-base';
+import { AppRegistry } from 'react-native';
+import {
+  Container,
+  Content,
+  Button,
+  Text,
+  Form,
+  Item,
+  Label
+} from 'native-base';
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeDetails';
-import { renderComponent } from '../utils';
-import commonStyles from '../utils/styles';
+import renderComponent from '../utils';
 
 export default class EmployeeMasterPage extends Component {
   static navigationOptions = {
@@ -13,8 +21,20 @@ export default class EmployeeMasterPage extends Component {
 
   constructor() {
     super();
+    this.state = {
+      name: '',
+      designation: '',
+      salary: ''
+    };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
+    this.updateValue = this.updateValue.bind(this);
   }
+
+  state: {
+    name: string,
+    designation: string,
+    salary: number
+  };
 
   onSubmitPressed() {
     // Navigate to navigation activity
@@ -22,42 +42,39 @@ export default class EmployeeMasterPage extends Component {
     navigate('Navigation');
   }
 
+  updateValue(id, selectedValue) {
+    this.setState({ [id]: selectedValue });
+  }
+
   render() {
     return (
       <Container>
-        <FormHeader />
-        {content.map((c, index) => {
-          return (
-            <Container key={index} style={styles.row}>
-              <Text style={this.columns}>
-                {c.field}
-              </Text>
-              {renderComponent(c.type, this.columns)}
-            </Container>
-          );
-        })}
-        <Button
-          type="button"
-          title="Submit"
-          onPress={this.onSubmitPressed}
-          style={styles.submit}
-        >
-          <Text>Submit</Text>
-        </Button>
+        <Content>
+          <Form>
+            <FormHeader />
+            {content.map((c, index) => {
+              return (
+                <Item>
+                  <Label>
+                    {c.field}
+                  </Label>
+                  {renderComponent(c.type, this.columns)}
+                </Item>
+              );
+            })}
+            <Button
+              type="button"
+              title="Submit"
+              onPress={this.onSubmitPressed}
+              block
+            >
+              <Text>Submit</Text>
+            </Button>
+          </Form>
+        </Content>
       </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1
-  },
-  row: commonStyles.row,
-  submit: commonStyles.submit
-});
 
 AppRegistry.registerComponent('EmployeeMasterPage', () => EmployeeMasterPage);

@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
-import { Input, Picker, Text } from 'native-base';
+import { Input, Picker, Switch, Text } from 'native-base';
 
-export function renderComponent(
+export default function renderComponent(
   id: string,
   type: string,
   style: Object,
@@ -13,6 +13,7 @@ export function renderComponent(
   switch (type) {
     case 'Picker':
       return (
+        content.length > 0 &&
         <Picker
           style={style}
           onValueChange={selectedValue => {
@@ -29,6 +30,8 @@ export function renderComponent(
       );
     case 'Text':
       return <Input style={style} onChangeText={handler} />;
+    case 'Switch':
+      return <Switch style={style} value={value} onValueChange={handler} />;
     case 'TimePicker':
       return (
         <Input style={style} keyboardType="numeric" onChangeText={handler} />

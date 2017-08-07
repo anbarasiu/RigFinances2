@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet } from 'react-native';
-import { Container, Button, Text, Form } from 'native-base';
+import { Container, Button, Text, Content } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
@@ -34,19 +34,19 @@ export default class ExpensesPage extends Component {
   render() {
     return (
       <Container>
-        <Form>
-          <FormHeader />
-          <Grid>
-            {expensesContent.map((e, index) => {
-              return (
-                <Col>
-                  <Text key={index} style={this.columns}>
-                    {e.field}
-                  </Text>
-                </Col>
-              );
-            })}
-          </Grid>
+        <FormHeader />
+        <Grid>
+          {expensesContent.map((e, index) => {
+            return (
+              <Col>
+                <Text key={index} style={this.columns}>
+                  {e.field}
+                </Text>
+              </Col>
+            );
+          })}
+        </Grid>
+        <Content>
           {this.state.expenseItems.map((e, index) =>
             <ExpenseItem
               key={index}
@@ -55,18 +55,18 @@ export default class ExpensesPage extends Component {
               content={expensesContent}
             />
           )}
-          <Button style={this.button} onPress={this.addExpenseItem}>
-            <Text>Add</Text>
-          </Button>
-          <Button
-            type="button"
-            title="Submit"
-            onPress={this.onSubmitPressed}
-            style={styles.submit}
-          >
-            <Text>Submit</Text>
-          </Button>
-        </Form>
+        </Content>
+        <Button style={this.button} onPress={this.addExpenseItem} block>
+          <Text>Add</Text>
+        </Button>
+        <Button
+          type="button"
+          title="Submit"
+          onPress={this.onSubmitPressed}
+          block
+        >
+          <Text>Submit</Text>
+        </Button>
       </Container>
     );
   }

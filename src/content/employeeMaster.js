@@ -1,5 +1,5 @@
 export default [
-  { field:'Name', type: 'Text' },
-  { field:'Designation', type: 'Text' },
-  { field:'Salary', type: 'Number' }
+  { id: 'name', field: 'Name', type: 'Text' },
+  { id: 'designation', field: 'Designation', type: 'Text' },
+  { id: 'salary', field: 'Salary', type: 'Number' }
 ];

@@ -7,9 +7,9 @@ import { Col, Grid } from 'react-native-easy-grid';
 export default class FormHeader extends Component {
   constructor() {
     super();
-
+    const date = new Date();
     this.state = {
-      date: 'Select Date'
+      date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
     };
 
     this.setDate = this.setDate.bind(this);
