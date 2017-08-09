@@ -1,8 +1,27 @@
 // @flow
 import React from 'react';
 import { Input, Picker, Switch, Text } from 'native-base';
+import { DatePickerAndroid, Keyboard } from 'react-native';
 
-export default function renderComponent(
+async function showDatePicker(id, handler) {
+  try {
+    Keyboard.dismiss();
+    let date = '';
+    const { action, year, month, day } = await DatePickerAndroid.open({
+      // Use `new Date()` for current date.
+      // May 25 2020. Month 0 is January.
+      date: new Date()
+    });
+    if (action !== DatePickerAndroid.dismissedAction) {
+      date = `${day}/${month + 1}/${year}`;
+      handler(id, date);
+    }
+  } catch ({ code, message }) {
+    console.warn('Cannot open date picker', message);
+  }
+}
+
+export function renderComponent(
   id: string,
   type: string,
   style: Object,
@@ -36,6 +55,16 @@ export default function renderComponent(
       return (
         <Input style={style} keyboardType="numeric" onChangeText={handler} />
       );
+    case 'DatePicker':
+      return (
+        <Input
+          style={style}
+          value={value}
+          onFocus={() => {
+            showDatePicker(id, handler);
+          }}
+        />
+      );
     default:
       return (
         <Text style={style}>
@@ -43,4 +72,9 @@ export default function renderComponent(
         </Text>
       );
   }
+}
+
+export function getCurrentDateString() {
+  const date = new Date();
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 }
