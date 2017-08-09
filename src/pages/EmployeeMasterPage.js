@@ -11,8 +11,8 @@ import {
   Label
 } from 'native-base';
 import FormHeader from '../components/FormHeader';
-import content from '../content/employeeDetails';
-import renderComponent from '../utils';
+import content from '../content/employeeMaster';
+import { renderComponent } from '../utils';
 
 export default class EmployeeMasterPage extends Component {
   static navigationOptions = {
@@ -58,7 +58,16 @@ export default class EmployeeMasterPage extends Component {
                   <Label>
                     {c.field}
                   </Label>
-                  {renderComponent(c.type, this.columns)}
+                  {renderComponent(
+                    c.id,
+                    c.type,
+                    {},
+                    c.items,
+                    this.state[c.id] !== undefined
+                      ? this.state[c.id]
+                      : index + 1,
+                    this.updateValue
+                  )}
                 </Item>
               );
             })}

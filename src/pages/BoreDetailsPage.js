@@ -12,7 +12,7 @@ import {
 } from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
 import FormHeader from '../components/FormHeader';
-import renderComponent from '../utils';
+import { renderComponent } from '../utils';
 
 export default class BoreDetailsPage extends Component {
   static navigationOptions = {
@@ -69,7 +69,9 @@ export default class BoreDetailsPage extends Component {
                     b.type,
                     {},
                     b.items,
-                    this.state[b.id] || index + 1,
+                    this.state[b.id] !== undefined
+                      ? this.state[b.id]
+                      : index + 1,
                     this.updateValue
                   )}
                 </Item>

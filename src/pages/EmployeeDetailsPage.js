@@ -12,7 +12,7 @@ import {
 } from 'native-base';
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeDetails';
-import renderComponent from '../utils';
+import { renderComponent, getCurrentDateString } from '../utils';
 
 export default class EmployeeDetailsPage extends Component {
   static navigationOptions = {
@@ -24,7 +24,7 @@ export default class EmployeeDetailsPage extends Component {
     this.state = {
       name: '',
       process: '',
-      date: ''
+      date: getCurrentDateString()
     };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.updateValue = this.updateValue.bind(this);
@@ -56,7 +56,16 @@ export default class EmployeeDetailsPage extends Component {
                   <Label>
                     {c.field}
                   </Label>
-                  {renderComponent(c.type, this.columns)}
+                  {renderComponent(
+                    c.id,
+                    c.type,
+                    {},
+                    c.items,
+                    this.state[c.id] !== undefined
+                      ? this.state[c.id]
+                      : index + 1,
+                    this.updateValue
+                  )}
                 </Item>
               );
             })}

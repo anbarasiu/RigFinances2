@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import { Grid, Col } from 'native-base';
-import renderComponent from '../utils';
+import { renderComponent } from '../utils';
 
 export default class ExpenseItem extends Component {
   constructor() {
