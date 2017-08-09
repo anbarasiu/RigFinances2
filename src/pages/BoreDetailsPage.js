@@ -44,11 +44,13 @@ export default class BoreDetailsPage extends Component {
     customer: string
   };
 
+  onSubmitPressed: Function;
   onSubmitPressed() {
     console.log(this);
   }
 
-  updateValue(id, selectedValue) {
+  updateValue: Function;
+  updateValue(id: string, selectedValue: any) {
     this.setState({ [id]: selectedValue });
   }
 

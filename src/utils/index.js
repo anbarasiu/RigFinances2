@@ -16,18 +16,18 @@ async function showDatePicker(id, handler) {
       date = `${day}/${month + 1}/${year}`;
       handler(id, date);
     }
-  } catch ({ code, message }) {
-    console.warn('Cannot open date picker', message);
+  } catch (e) {
+    console.warn('Cannot open date picker', e.message);
   }
 }
 
 export function renderComponent(
   id: string,
   type: string,
-  style: Object,
-  content = [],
-  value,
-  handler
+  style?: Object,
+  content: Array<any>,
+  value: any,
+  handler: Function
 ) {
   switch (type) {
     case 'Picker':

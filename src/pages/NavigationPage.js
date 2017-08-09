@@ -12,6 +12,7 @@ export default class NavigationPage extends Component {
     this.onTileSelected = this.onTileSelected.bind(this);
   }
 
+  onTileSelected: Function;
   onTileSelected(index: number) {
     // Navigate to selected activity
     const { navigate } = this.props.navigation;

@@ -24,7 +24,7 @@ export default class EmployeeMasterPage extends Component {
     this.state = {
       name: '',
       designation: '',
-      salary: ''
+      salary: 0
     };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.updateValue = this.updateValue.bind(this);
@@ -36,13 +36,15 @@ export default class EmployeeMasterPage extends Component {
     salary: number
   };
 
+  onSubmitPressed: Function;
   onSubmitPressed() {
     // Navigate to navigation activity
     const { navigate } = this.props.navigation;
     navigate('Navigation');
   }
 
-  updateValue(id, selectedValue) {
+  updateValue: Function;
+  updateValue(id: string, selectedValue: any) {
     this.setState({ [id]: selectedValue });
   }
 

@@ -13,6 +13,7 @@ export default class LoginPage extends Component {
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
   }
 
+  onSubmitPressed: Function;
   onSubmitPressed() {
     // Navigate to navigation activity
     const { navigate } = this.props.navigation;
