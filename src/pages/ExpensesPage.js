@@ -22,12 +22,19 @@ export default class ExpensesPage extends Component {
     };
   }
 
+  state: {
+    expenseItems: Array<Object>
+  };
+
+  onSubmitPressed: Function;
   onSubmitPressed() {
     console.log(this);
   }
 
+  addExpenseItem: Function;
   addExpenseItem() {
-    const newItems = this.state.expenseItems.concat({});
+    const newItems =
+      this.state.expenseItems && this.state.expenseItems.concat({});
     this.setState({ expenseItems: newItems });
   }
 
@@ -39,7 +46,7 @@ export default class ExpensesPage extends Component {
           {expensesContent.map((e, index) => {
             return (
               <Col>
-                <Text key={index} style={this.columns}>
+                <Text key={index}>
                   {e.field}
                 </Text>
               </Col>
@@ -47,16 +54,16 @@ export default class ExpensesPage extends Component {
           })}
         </Grid>
         <Content>
-          {this.state.expenseItems.map((e, index) =>
-            <ExpenseItem
-              key={index}
-              index={index}
-              columnStyle={this.columns}
-              content={expensesContent}
-            />
-          )}
+          {this.state.expenseItems &&
+            this.state.expenseItems.map((e, index) =>
+              <ExpenseItem
+                key={index}
+                index={index}
+                content={expensesContent}
+              />
+            )}
         </Content>
-        <Button style={this.button} onPress={this.addExpenseItem} block>
+        <Button onPress={this.addExpenseItem} block>
           <Text>Add</Text>
         </Button>
         <Button

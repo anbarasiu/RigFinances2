@@ -15,16 +15,20 @@ export default class ExpenseItem extends Component {
     this.updateValue = this.updateValue.bind(this);
   }
 
-  props: {
-    content: Array<any>,
-    columnStyle: Object,
-    index: number
+  state: {
+    category: string,
+    subcategory: string,
+    spenton: string
   };
 
-  columns: Object;
-  categoryHandler: Function;
+  props: {
+    content: Array<any>,
+    columnStyle?: Object
+  };
 
-  updateValue(id, selectedValue) {
+  updateValue: Function;
+
+  updateValue(id: string, selectedValue: any) {
     this.setState({ [id]: selectedValue });
   }
 
@@ -32,7 +36,7 @@ export default class ExpenseItem extends Component {
     const content = this.props.content;
     return (
       <Grid>
-        {content.map(c => {
+        {content.map((c, index) => {
           const items =
             c.items &&
             (c.items.length ? c.items : c.items[this.state.category]);
@@ -44,7 +48,7 @@ export default class ExpenseItem extends Component {
                 c.type,
                 this.props.columnStyle,
                 items,
-                this.state[id] || this.props.index + 1,
+                this.state[c.id] !== undefined ? this.state[c.id] : index + 1,
                 this.updateValue
               )}
             </Col>

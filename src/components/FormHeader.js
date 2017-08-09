@@ -15,6 +15,11 @@ export default class FormHeader extends Component {
     this.setDate = this.setDate.bind(this);
   }
 
+  state: {
+    date: string
+  };
+
+  setDate: Function;
   async setDate() {
     try {
       const { action, year, month, day } = await DatePickerAndroid.open({
@@ -25,8 +30,8 @@ export default class FormHeader extends Component {
       if (action !== DatePickerAndroid.dismissedAction) {
         this.setState({ date: `${day}/${month + 1}/${year}` });
       }
-    } catch ({ code, message }) {
-      console.warn('Cannot open date picker', message);
+    } catch (e) {
+      console.warn('Cannot open date picker', e.message);
     }
   }
 
@@ -41,10 +46,10 @@ export default class FormHeader extends Component {
           </Button>
         </Col>
         <Col>
-          <Text style={this.tab}>Total Amount</Text>
+          <Text>Total Amount</Text>
         </Col>
         <Col>
-          <Text style={this.tab}>User</Text>
+          <Text>User</Text>
         </Col>
       </Grid>
     );
