@@ -32,6 +32,7 @@ export function renderComponent(
   switch (type) {
     case 'Picker':
       return (
+        content &&
         content.length > 0 &&
         <Picker
           style={style}

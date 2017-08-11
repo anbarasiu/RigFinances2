@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { AppRegistry } from 'react-native';
 import { Container, Tab, Tabs } from 'native-base';
 import ReportsPage from './ReportsPage';
@@ -8,7 +9,7 @@ import BoreDetailsPage from './BoreDetailsPage';
 import EmployeeDetailsPage from './EmployeeDetailsPage';
 import EmployeeMasterPage from './EmployeeMasterPage';
 
-export default class MasterPage extends Component {
+export default class MasterPageContainer extends Component {
   static navigationOptions = {
     title: 'Master'
   };
@@ -45,5 +46,19 @@ export default class MasterPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  place: state.locations.place || ''
+});
+
+const mapDispatchToProps = dispatch => ({
+  test: () => {
+    console.log(dispatch);
+  }
+});
+
+const MasterPage = connect(mapStateToProps, mapDispatchToProps)(
+  MasterPageContainer
+);
 
 AppRegistry.registerComponent('MasterPage', () => MasterPage);
