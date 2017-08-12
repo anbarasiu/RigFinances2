@@ -37,7 +37,11 @@ export function renderComponent(
         <Picker
           style={style}
           onValueChange={selectedValue => {
-            handler(id, selectedValue);
+            try {
+              throw new Error();
+            } catch (e) {
+              handler(id, selectedValue);
+            }
           }}
           selectedValue={value}
         >

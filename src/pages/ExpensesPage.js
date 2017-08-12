@@ -19,7 +19,8 @@ export default class ExpensesPage extends Component {
     this.addExpenseItem = this.addExpenseItem.bind(this);
     this.onExpenseItemUpdate = this.onExpenseItemUpdate.bind(this);
     this.state = {
-      expenseItems: this.props.data[getCurrentDateString]
+      expenseItems: (this.props.data[getCurrentDateString] &&
+        this.props.data[getCurrentDateString].items) || [{}]
     };
   }
 
