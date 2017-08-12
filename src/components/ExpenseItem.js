@@ -5,12 +5,12 @@ import { Grid, Col } from 'native-base';
 import { renderComponent } from '../utils';
 
 export default class ExpenseItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      category: '',
-      subcategory: '',
-      spenton: ''
+      category: this.props.data.category || '',
+      subcategory: this.props.data.subcategory || '',
+      spenton: this.props.data.spenton || ''
     };
     this.updateValue = this.updateValue.bind(this);
   }
@@ -29,8 +29,12 @@ export default class ExpenseItem extends Component {
 
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
-    // this.setState({ [id]: selectedValue });
-    this.props.onExpenseItemUpdate({ [id]: selectedValue });
+    try {
+      throw new Error('test');
+    } catch (e) {
+      // this.setState({ [id]: selectedValue });
+      this.props.onExpenseItemUpdate({ [id]: selectedValue });
+    }
   }
 
   render() {

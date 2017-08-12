@@ -5,3 +5,5 @@ export function fetchPageDetails(page, date) {
     date
   };
 }
+
+export * from './expenses';
