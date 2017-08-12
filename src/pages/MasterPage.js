@@ -8,18 +8,19 @@ import ExpensesPage from './ExpensesPage';
 import BoreDetailsPage from './BoreDetailsPage';
 import EmployeeDetailsPage from './EmployeeDetailsPage';
 import EmployeeMasterPage from './EmployeeMasterPage';
+import * as actions from '../actions';
 
-export default class MasterPageContainer extends Component {
+class MasterPage extends Component {
   static navigationOptions = {
     title: 'Master'
   };
 
-  constructor() {
-    super();
-  }
-
   props: {
-    navigation: Object
+    navigation: Object,
+    expenses: Object,
+    bore: Object,
+    employee: Object,
+    onExpenseItemUpdate: Function
   };
 
   render() {
@@ -27,16 +28,19 @@ export default class MasterPageContainer extends Component {
       <Container>
         <Tabs initialPage={this.props.navigation.state.params.tab}>
           <Tab heading="Expenses">
-            <ExpensesPage />
+            <ExpensesPage
+              data={this.props.expenses}
+              onExpenseItemUpdate={this.props.onExpenseItemUpdate}
+            />
           </Tab>
           <Tab heading="Bore Details">
-            <BoreDetailsPage />
+            <BoreDetailsPage data={this.props.bore} />
           </Tab>
           <Tab heading="Employee Master">
-            <EmployeeMasterPage />
+            <EmployeeMasterPage data={this.props.employee} />
           </Tab>
           <Tab heading="Employee Details">
-            <EmployeeDetailsPage />
+            <EmployeeDetailsPage data={this.props.employee} />
           </Tab>
           <Tab heading="Reports">
             <ReportsPage />
@@ -48,17 +52,17 @@ export default class MasterPageContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  place: state.locations.place || ''
+  expenses: state.expenses || {},
+  bore: state.bore || {},
+  employee: state.employee || {}
 });
 
 const mapDispatchToProps = dispatch => ({
-  test: () => {
-    console.log(dispatch);
+  onExpenseItemUpdate: (date, data) => {
+    dispatch(actions.updateExpenseItem(date, data));
   }
 });
 
-const MasterPage = connect(mapStateToProps, mapDispatchToProps)(
-  MasterPageContainer
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MasterPage);
 
 AppRegistry.registerComponent('MasterPage', () => MasterPage);

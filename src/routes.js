@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store';
 import LoginPage from './pages/LoginPage';
 import NavigationPage from './pages/NavigationPage';
@@ -17,4 +17,4 @@ const App = () =>
     <AppNavigation />
   </Provider>;
 
-export { App };
+export default App;

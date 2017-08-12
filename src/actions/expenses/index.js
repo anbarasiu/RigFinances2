@@ -1,6 +1,8 @@
-export const SAVE_EXPENSES = 'SAVE_EXPENSES';
-export function saveExpenses() {
+export const UPDATE_EXPENSE_ITEM = 'UPDATE_EXPENSE_ITEM';
+export function updateExpenseItem(date, data) {
   return {
-    type: SAVE_EXPENSES
+    type: UPDATE_EXPENSE_ITEM,
+    date,
+    data
   };
 }
