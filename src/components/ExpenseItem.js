@@ -23,13 +23,14 @@ export default class ExpenseItem extends Component {
 
   props: {
     content: Array<any>,
-    columnStyle?: Object
+    columnStyle?: Object,
+    onExpenseItemUpdate: Function
   };
 
   updateValue: Function;
-
   updateValue(id: string, selectedValue: any) {
-    this.setState({ [id]: selectedValue });
+    // this.setState({ [id]: selectedValue });
+    this.props.onExpenseItemUpdate({ [id]: selectedValue });
   }
 
   render() {

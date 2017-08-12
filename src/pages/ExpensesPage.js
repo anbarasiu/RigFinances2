@@ -1,24 +1,25 @@
 // @flow
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet } from 'react-native';
+import { AppRegistry } from 'react-native';
 import { Container, Button, Text, Content } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
 import expensesContent from '../content/expenses';
-import commonStyles from '../utils/styles';
+import getCurrentDateString from '../utils';
 
 export default class ExpensesPage extends Component {
   static navigationOptions = {
     title: 'Expenses'
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.addExpenseItem = this.addExpenseItem.bind(this);
+    this.onExpenseItemUpdate = this.onExpenseItemUpdate.bind(this);
     this.state = {
-      expenseItems: [{}]
+      expenseItems: this.props.data[getCurrentDateString]
     };
   }
 
@@ -30,6 +31,16 @@ export default class ExpensesPage extends Component {
   onSubmitPressed() {
     console.log(this);
   }
+
+  onExpenseItemUpdate: Function;
+  onExpenseItemUpdate(data) {
+    this.props.onExpenseItemUpdate(this.state.date, data);
+  }
+
+  props: {
+    data: Array<Object>,
+    onExpenseItemUpdate: Function
+  };
 
   addExpenseItem: Function;
   addExpenseItem() {
@@ -60,6 +71,8 @@ export default class ExpensesPage extends Component {
                 key={index}
                 index={index}
                 content={expensesContent}
+                data={e}
+                onExpenseItemUpdate={this.onExpenseItemUpdate}
               />
             )}
         </Content>
@@ -78,21 +91,5 @@ export default class ExpensesPage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1
-  },
-  row: {
-    flexDirection: 'row',
-    flex: 1
-  },
-  text: {
-    margin: 8
-  },
-  submit: commonStyles.submit
-});
 
 AppRegistry.registerComponent('ExpensesPage', () => ExpensesPage);
