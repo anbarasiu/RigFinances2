@@ -38,6 +38,11 @@ export default class EmployeeMasterPage extends Component {
     salary: number
   };
 
+  setDate: Function;
+  setDate(date: string) {
+    this.setState({ date });
+  }
+
   onSubmitPressed: Function;
   onSubmitPressed() {
     // Navigate to navigation activity

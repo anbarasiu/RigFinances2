@@ -53,7 +53,7 @@ export default class BoreDetailsPage extends Component {
   }
 
   setDate: Function;
-  setDate(date) {
+  setDate(date: string) {
     this.setState({ date });
   }
 

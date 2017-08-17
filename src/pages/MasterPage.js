@@ -17,10 +17,12 @@ class MasterPage extends Component {
 
   props: {
     navigation: Object,
-    expenses: Object,
+    expenses: Array<Object>,
     bore: Object,
     employee: Object,
-    onExpenseItemUpdate: Function
+    onExpenseItemUpdate: Function,
+    onBoreItemUpdate: Function,
+    onEmployeeItemUpdate: Function
   };
 
   render() {

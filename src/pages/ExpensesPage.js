@@ -6,27 +6,34 @@ import { Col, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
 import expensesContent from '../content/expenses';
-import getCurrentDateString from '../utils';
+import { getCurrentDateString } from '../utils';
 
 export default class ExpensesPage extends Component {
   static navigationOptions = {
     title: 'Expenses'
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.addExpenseItem = this.addExpenseItem.bind(this);
     this.onExpenseItemUpdate = this.onExpenseItemUpdate.bind(this);
     this.state = {
+      date: '',
       expenseItems: (this.props.data[getCurrentDateString] &&
         this.props.data[getCurrentDateString].items) || [{}]
     };
   }
 
   state: {
-    expenseItems: Array<Object>
+    expenseItems: Array<Object>,
+    date: string
   };
+
+  setDate: Function;
+  setDate(date: string) {
+    this.setState({ date });
+  }
 
   onSubmitPressed: Function;
   onSubmitPressed() {
@@ -34,7 +41,7 @@ export default class ExpensesPage extends Component {
   }
 
   onExpenseItemUpdate: Function;
-  onExpenseItemUpdate(data) {
+  onExpenseItemUpdate(data: Array<Object>) {
     this.props.onExpenseItemUpdate(this.state.date, data);
   }
 
@@ -53,7 +60,7 @@ export default class ExpensesPage extends Component {
   render() {
     return (
       <Container>
-        <FormHeader />
+        <FormHeader setDate={this.setDate} />
         <Grid>
           {expensesContent.map((e, index) => {
             return (
