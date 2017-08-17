@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import { Container, Button, Text, Content } from 'native-base';
-import { Col, Grid } from 'react-native-easy-grid';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
 import expensesContent from '../content/expenses';
@@ -17,9 +17,12 @@ export default class ExpensesPage extends Component {
     super(props);
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.addExpenseItem = this.addExpenseItem.bind(this);
+    this.closeExpenseItem = this.closeExpenseItem.bind(this);
     this.onExpenseItemUpdate = this.onExpenseItemUpdate.bind(this);
+    this.setDate = this.setDate.bind(this);
     this.state = {
       date: '',
+      isModalOpen: false,
       expenseItems: (this.props.data[getCurrentDateString] &&
         this.props.data[getCurrentDateString].items) || [{}]
     };
@@ -27,7 +30,8 @@ export default class ExpensesPage extends Component {
 
   state: {
     expenseItems: Array<Object>,
-    date: string
+    date: string,
+    isModalOpen: boolean
   };
 
   setDate: Function;
@@ -52,15 +56,30 @@ export default class ExpensesPage extends Component {
 
   addExpenseItem: Function;
   addExpenseItem() {
-    const newItems =
-      this.state.expenseItems && this.state.expenseItems.concat({});
-    this.setState({ expenseItems: newItems });
+    // const newItems =
+    //   this.state.expenseItems && this.state.expenseItems.concat({});
+    // this.setState({ expenseItems: newItems });
+    this.setState({ isModalOpen: true });
+  }
+
+  closeExpenseItem: Function;
+  closeExpenseItem() {
+    this.setState({ isModalOpen: false });
   }
 
   render() {
     return (
       <Container>
         <FormHeader setDate={this.setDate} />
+        <ExpenseItem
+          isOpen={this.state.isModalOpen}
+          close={this.closeExpenseItem}
+          /* key={index}
+          index={index}
+          data={e} */
+          content={expensesContent}
+          onExpenseItemUpdate={this.onExpenseItemUpdate}
+        />
         <Grid>
           {expensesContent.map((e, index) => {
             return (
@@ -75,13 +94,21 @@ export default class ExpensesPage extends Component {
         <Content>
           {this.state.expenseItems &&
             this.state.expenseItems.map((e, index) =>
-              <ExpenseItem
-                key={index}
-                index={index}
-                content={expensesContent}
-                data={e}
-                onExpenseItemUpdate={this.onExpenseItemUpdate}
-              />
+              <Row>
+                {expensesContent.map((c, index) => {
+                  const items =
+                    c.items &&
+                    (c.items.length ? c.items : c.items[this.state.category]);
+                  const id = c.id;
+                  return (
+                    <Col>
+                      <Text>
+                        {e[id]}
+                      </Text>
+                    </Col>
+                  );
+                })}
+              </Row>
             )}
         </Content>
         <Button onPress={this.addExpenseItem} block>

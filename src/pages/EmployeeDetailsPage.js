@@ -29,6 +29,7 @@ export default class EmployeeDetailsPage extends Component {
     };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.updateValue = this.updateValue.bind(this);
+    this.setDate = this.setDate.bind(this);
   }
 
   state: {

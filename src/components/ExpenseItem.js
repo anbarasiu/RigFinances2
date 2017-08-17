@@ -1,6 +1,12 @@
 // @flow
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import {
+  AppRegistry,
+  Modal,
+  Text,
+  TouchableHighlight,
+  View
+} from 'react-native';
 import { Grid, Col } from 'native-base';
 import { renderComponent } from '../utils';
 
@@ -9,9 +15,10 @@ export default class ExpenseItem extends Component {
     super(props);
     this.state = {
       sno: 0,
-      category: this.props.data.category || '',
-      subcategory: this.props.data.subcategory || '',
-      spenton: this.props.data.spenton || ''
+      category: (this.props.data && this.props.data.category) || '',
+      subcategory: (this.props.data && this.props.data.subcategory) || '',
+      spenton: (this.props.data && this.props.data.spenton) || '',
+      modalVisible: this.props.isOpen
     };
     this.updateValue = this.updateValue.bind(this);
   }
@@ -19,7 +26,8 @@ export default class ExpenseItem extends Component {
   state: {
     category: string,
     subcategory: string,
-    spenton: string
+    spenton: string,
+    modalVisible: boolean
   };
 
   props: {
@@ -37,26 +45,42 @@ export default class ExpenseItem extends Component {
   render() {
     const content = this.props.content;
     return (
-      <Grid>
-        {content.map((c, index) => {
-          const items =
-            c.items &&
-            (c.items.length ? c.items : c.items[this.state.category]);
-          const id = c.id;
-          return (
-            <Col>
-              {renderComponent(
-                id,
-                c.type,
-                this.props.columnStyle,
-                items,
-                this.state[c.id] !== undefined ? this.state[c.id] : index + 1,
-                this.updateValue
-              )}
-            </Col>
-          );
-        })}
-      </Grid>
+      <Modal
+        animationType={'slide'}
+        transparent={false}
+        visible={this.state.modalVisible}
+        onRequestClose={() => {
+          alert('Modal has been closed.');
+        }}
+      >
+        <Grid>
+          {content.map((c, index) => {
+            const items =
+              c.items &&
+              (c.items.length ? c.items : c.items[this.state.category]);
+            const id = c.id;
+            return (
+              <Col>
+                {renderComponent(
+                  id,
+                  c.type,
+                  this.props.columnStyle,
+                  items,
+                  this.state[c.id] !== undefined ? this.state[c.id] : index + 1,
+                  this.updateValue
+                )}
+              </Col>
+            );
+          })}
+        </Grid>
+        <TouchableHighlight
+          onPress={() => {
+            this.props.close();
+          }}
+        >
+          <Text>Save</Text>
+        </TouchableHighlight>
+      </Modal>
     );
   }
 }
