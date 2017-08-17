@@ -22,6 +22,7 @@ export default class EmployeeDetailsPage extends Component {
   constructor() {
     super();
     this.state = {
+      date: '',
       name: '',
       process: '',
       date: getCurrentDateString()
@@ -31,10 +32,16 @@ export default class EmployeeDetailsPage extends Component {
   }
 
   state: {
+    date: string,
     name: string,
     process: string,
     date: string
   };
+
+  setDate: Function;
+  setDate(date) {
+    this.setState({ date });
+  }
 
   onSubmitPressed: Function;
   onSubmitPressed() {
@@ -43,7 +50,7 @@ export default class EmployeeDetailsPage extends Component {
 
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
-    this.setState({ [id]: selectedValue });
+    this.props.onEmployeeItemUpdate(this.state.date, { [id]: selectedValue });
   }
 
   render() {
@@ -51,7 +58,7 @@ export default class EmployeeDetailsPage extends Component {
       <Container>
         <Content>
           <Form>
-            <FormHeader />
+            <FormHeader setDate={this.setDate} />
             {content.map((c, index) => {
               return (
                 <Item>

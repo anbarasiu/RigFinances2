@@ -22,6 +22,7 @@ export default class BoreDetailsPage extends Component {
   constructor() {
     super();
     this.state = {
+      date: '',
       type: '',
       hammerSize: '',
       bitSize: '',
@@ -32,9 +33,11 @@ export default class BoreDetailsPage extends Component {
     };
     this.onSubmitPressed = this.onSubmitPressed.bind(this);
     this.updateValue = this.updateValue.bind(this);
+    this.setDate = this.setDate.bind(this);
   }
 
   state: {
+    date: string,
     type: string,
     hammerSize: string,
     bitSize: string,
@@ -49,9 +52,14 @@ export default class BoreDetailsPage extends Component {
     console.log(this);
   }
 
+  setDate: Function;
+  setDate(date) {
+    this.setState({ date });
+  }
+
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
-    this.setState({ [id]: selectedValue });
+    this.props.onBoreItemUpdate(this.state.date, { [id]: selectedValue });
   }
 
   render() {
@@ -59,7 +67,7 @@ export default class BoreDetailsPage extends Component {
       <Container>
         <Content>
           <Form>
-            <FormHeader />
+            <FormHeader setDate={this.setDate} />
             {boreDetailsContent.map((b, index) => {
               return (
                 <Item>

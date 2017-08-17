@@ -37,11 +37,7 @@ export function renderComponent(
         <Picker
           style={style}
           onValueChange={selectedValue => {
-            try {
-              throw new Error();
-            } catch (e) {
-              handler(id, selectedValue);
-            }
+            handler(id, selectedValue);
           }}
           selectedValue={value}
         >
@@ -50,15 +46,42 @@ export function renderComponent(
       );
     case 'Number':
       return (
-        <Input style={style} keyboardType="numeric" onChangeText={handler} />
+        <Input
+          style={style}
+          keyboardType="numeric"
+          onChangeText={selectedValue => {
+            handler(id, selectedValue);
+          }}
+        />
       );
     case 'Text':
-      return <Input style={style} onChangeText={handler} />;
+      return (
+        <Input
+          style={style}
+          onChangeText={selectedValue => {
+            handler(id, selectedValue);
+          }}
+        />
+      );
     case 'Switch':
-      return <Switch style={style} value={value} onValueChange={handler} />;
+      return (
+        <Switch
+          style={style}
+          value={value}
+          onValueChange={selectedValue => {
+            handler(id, selectedValue);
+          }}
+        />
+      );
     case 'TimePicker':
       return (
-        <Input style={style} keyboardType="numeric" onChangeText={handler} />
+        <Input
+          style={style}
+          keyboardType="numeric"
+          onChangeText={selectedValue => {
+            handler(id, selectedValue);
+          }}
+        />
       );
     case 'DatePicker':
       return (
@@ -82,4 +105,34 @@ export function renderComponent(
 export function getCurrentDateString() {
   const date = new Date();
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+}
+
+// TODO: Refactor this copied logic from Android code
+export function formatDateEntry(date: string) {
+  if (!date || date === '') {
+    return '0';
+  }
+  let temp = date.split('/');
+  if (temp[1].length <= 1) {
+    temp[1] = '0' + temp[1];
+  }
+  if (temp[0].length <= 1) {
+    temp[0] = '0' + temp[0];
+  }
+  const formattedDate = temp[2] + temp[1] + temp[0];
+  return formattedDate;
+}
+
+export function reverseFormatDateEntry(date: string) {
+  if (!date || date === '0') {
+    return '';
+  }
+
+  return (
+    date.substring(6, 8) +
+    '/' +
+    date.substring(4, 6) +
+    '/' +
+    date.substring(0, 4)
+  );
 }

@@ -22,6 +22,7 @@ export default class EmployeeMasterPage extends Component {
   constructor() {
     super();
     this.state = {
+      date: '',
       name: '',
       designation: '',
       salary: 0
@@ -31,6 +32,7 @@ export default class EmployeeMasterPage extends Component {
   }
 
   state: {
+    date: string,
     name: string,
     designation: string,
     salary: number
@@ -45,7 +47,7 @@ export default class EmployeeMasterPage extends Component {
 
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
-    this.setState({ [id]: selectedValue });
+    this.props.onEmployeeItemUpdate(this.state.date, { [id]: selectedValue });
   }
 
   render() {
@@ -53,7 +55,7 @@ export default class EmployeeMasterPage extends Component {
       <Container>
         <Content>
           <Form>
-            <FormHeader />
+            <FormHeader setDate={this.setDate} />
             {content.map((c, index) => {
               return (
                 <Item>
