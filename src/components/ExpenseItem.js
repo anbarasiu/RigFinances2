@@ -5,7 +5,7 @@ import { Grid, Col } from 'native-base';
 import { renderComponent } from '../utils';
 
 export default class ExpenseItem extends Component {
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
     this.state = {
       sno: 0,
@@ -23,6 +23,7 @@ export default class ExpenseItem extends Component {
   };
 
   props: {
+    data: Object,
     content: Array<any>,
     columnStyle?: Object,
     onExpenseItemUpdate: Function
@@ -30,7 +31,7 @@ export default class ExpenseItem extends Component {
 
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
-    this.props.onExpenseItemUpdate({ [id]: selectedValue, sno });
+    this.props.onExpenseItemUpdate({ [id]: selectedValue });
   }
 
   render() {

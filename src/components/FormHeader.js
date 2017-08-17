@@ -5,7 +5,7 @@ import { Text, Button, Label } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 
 export default class FormHeader extends Component {
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
     const date = new Date();
     this.state = {
