@@ -8,6 +8,7 @@ export default class ExpenseItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      sno: 0,
       category: this.props.data.category || '',
       subcategory: this.props.data.subcategory || '',
       spenton: this.props.data.spenton || ''
@@ -29,12 +30,7 @@ export default class ExpenseItem extends Component {
 
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
-    try {
-      throw new Error('test');
-    } catch (e) {
-      // this.setState({ [id]: selectedValue });
-      this.props.onExpenseItemUpdate({ [id]: selectedValue });
-    }
+    this.props.onExpenseItemUpdate({ [id]: selectedValue, sno });
   }
 
   render() {

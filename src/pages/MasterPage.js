@@ -34,13 +34,22 @@ class MasterPage extends Component {
             />
           </Tab>
           <Tab heading="Bore Details">
-            <BoreDetailsPage data={this.props.bore} />
+            <BoreDetailsPage
+              data={this.props.bore}
+              onBoreItemUpdate={this.props.onBoreItemUpdate}
+            />
           </Tab>
           <Tab heading="Employee Master">
-            <EmployeeMasterPage data={this.props.employee} />
+            <EmployeeMasterPage
+              data={this.props.employee}
+              onEmployeeItemUpdate={this.props.onEmployeeItemUpdate}
+            />
           </Tab>
           <Tab heading="Employee Details">
-            <EmployeeDetailsPage data={this.props.employee} />
+            <EmployeeDetailsPage
+              data={this.props.employee}
+              onEmployeeItemUpdate={this.props.onEmployeeItemUpdate}
+            />
           </Tab>
           <Tab heading="Reports">
             <ReportsPage />
@@ -60,6 +69,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onExpenseItemUpdate: (date, data) => {
     dispatch(actions.updateExpenseItem(date, data));
+  },
+  onBoreItemUpdate: (date, data) => {
+    dispatch(actions.updateBoreItem(date, data));
+  },
+  onEmployeeItemUpdate: (date, data) => {
+    dispatch(actions.updateEmployeeItem(date, data));
   }
 });
 

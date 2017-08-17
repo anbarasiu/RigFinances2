@@ -5,12 +5,13 @@ import { Text, Button, Label } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 
 export default class FormHeader extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const date = new Date();
     this.state = {
       date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
     };
+    this.props.setDate(this.state.date);
 
     this.setDate = this.setDate.bind(this);
   }
@@ -29,6 +30,7 @@ export default class FormHeader extends Component {
       });
       if (action !== DatePickerAndroid.dismissedAction) {
         this.setState({ date: `${day}/${month + 1}/${year}` });
+        this.props.setDate(this.state.date);
       }
     } catch (e) {
       console.warn('Cannot open date picker', e.message);
