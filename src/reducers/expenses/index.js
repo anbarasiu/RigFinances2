@@ -5,10 +5,9 @@ const expenses = (state = {}, action) => {
   switch (action.type) {
     case ACTIONS.UPDATE_EXPENSE_ITEM: {
       const date = formatDateEntry(action.date);
-      const current = { ...state[date] };
-      const item = Object.assign({}, current, action.data);
-      console.log(JSON.stringify(state));
-      return { ...state, [date]: item };
+      const current = state[date] ? [...state[date]] : [];
+      current[action.data.sno - 1] = action.data; // Rather crude? Decrement to maintain array index from 0
+      return { ...state, [date]: current };
     }
     default:
       return { ...state };

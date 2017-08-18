@@ -6,7 +6,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import ExpenseItem from '../components/ExpenseItem';
 import expensesContent from '../content/expenses';
-import { getCurrentDateString } from '../utils';
+import { formatDateEntry, getCurrentDateString } from '../utils';
 
 export default class ExpensesPage extends Component {
   static navigationOptions = {
@@ -23,13 +23,12 @@ export default class ExpensesPage extends Component {
     this.state = {
       date: '',
       isModalOpen: false,
-      expenseItems: (this.props.data[getCurrentDateString] &&
-        this.props.data[getCurrentDateString].items) || [{}]
+      selectedIndex: 0,
+      itemCount: 0
     };
   }
 
   state: {
-    expenseItems: Array<Object>,
     date: string,
     isModalOpen: boolean
   };
@@ -56,10 +55,9 @@ export default class ExpensesPage extends Component {
 
   addExpenseItem: Function;
   addExpenseItem() {
-    // const newItems =
-    //   this.state.expenseItems && this.state.expenseItems.concat({});
-    // this.setState({ expenseItems: newItems });
+    this.setState({ itemCount: this.state.itemCount + 1 });
     this.setState({ isModalOpen: true });
+    console.log(this.state.itemCount);
   }
 
   closeExpenseItem: Function;
@@ -68,15 +66,18 @@ export default class ExpensesPage extends Component {
   }
 
   render() {
+    const formattedDate = formatDateEntry(getCurrentDateString());
+    const expenseItems = this.props.data[formattedDate] || [{}];
+    console.log(expenseItems);
     return (
       <Container>
         <FormHeader setDate={this.setDate} />
         <ExpenseItem
           isOpen={this.state.isModalOpen}
           close={this.closeExpenseItem}
-          /* key={index}
-          index={index}
-          data={e} */
+          /* key={index} */
+          sno={this.state.itemCount}
+          data={expenseItems[this.state.selectedIndex]}
           content={expensesContent}
           onExpenseItemUpdate={this.onExpenseItemUpdate}
         />
@@ -92,24 +93,23 @@ export default class ExpensesPage extends Component {
           })}
         </Grid>
         <Content>
-          {this.state.expenseItems &&
-            this.state.expenseItems.map((e, index) =>
-              <Row>
-                {expensesContent.map((c, index) => {
-                  const items =
-                    c.items &&
-                    (c.items.length ? c.items : c.items[this.state.category]);
-                  const id = c.id;
-                  return (
-                    <Col>
-                      <Text>
-                        {e[id]}
-                      </Text>
-                    </Col>
-                  );
-                })}
-              </Row>
-            )}
+          {expenseItems.map((e, index) =>
+            <Row>
+              {expensesContent.map((c, index) => {
+                const items =
+                  c.items &&
+                  (c.items.length ? c.items : c.items[this.state.category]);
+                const id = c.id;
+                return (
+                  <Col>
+                    <Text>
+                      {e[id]}
+                    </Text>
+                  </Col>
+                );
+              })}
+            </Row>
+          )}
         </Content>
         <Button onPress={this.addExpenseItem} block>
           <Text>Add</Text>

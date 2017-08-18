@@ -14,7 +14,7 @@ export default class ExpenseItem extends Component {
   constructor(props: Object) {
     super(props);
     this.state = {
-      sno: 0,
+      sno: this.props.sno,
       category: (this.props.data && this.props.data.category) || '',
       subcategory: (this.props.data && this.props.data.subcategory) || '',
       amount: (this.props.data && this.props.data.amount) || '',
@@ -25,6 +25,7 @@ export default class ExpenseItem extends Component {
       spenton: (this.props.data && this.props.data.spenton) || ''
     };
     this.updateValue = this.updateValue.bind(this);
+    this.saveDetails = this.saveDetails.bind(this);
   }
 
   state: {
@@ -49,8 +50,14 @@ export default class ExpenseItem extends Component {
 
   saveDetails: Function;
   saveDetails() {
-    this.props.onExpenseItemUpdate({ [this.state.sno]: this.state });
+    this.props.onExpenseItemUpdate(this.state);
     this.props.close();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.sno != nextProps.sno) {
+      this.setState({ sno: nextProps.sno });
+    }
   }
 
   render() {
@@ -77,7 +84,7 @@ export default class ExpenseItem extends Component {
                   c.type,
                   this.props.columnStyle,
                   items,
-                  this.state[c.id] !== undefined ? this.state[c.id] : index + 1,
+                  this.state[c.id],
                   this.updateValue
                 )}
               </Col>
