@@ -1,0 +1,14 @@
+[ignore]
+.*node_modules/react-native/.*
+.*node_modules/react-navigation/.*
+.*node_modules/react-native-tab-view/.*
+.*node_modules/metro-bundler/.*
+
+[include]
+
+[libs]
+./flow-types.js
+
+[options]
+
+[lints]
