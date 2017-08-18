@@ -57,7 +57,6 @@ export default class ExpensesPage extends Component {
   addExpenseItem() {
     this.setState({ itemCount: this.state.itemCount + 1 });
     this.setState({ isModalOpen: true });
-    console.log(this.state.itemCount);
   }
 
   closeExpenseItem: Function;
@@ -68,14 +67,13 @@ export default class ExpensesPage extends Component {
   render() {
     const formattedDate = formatDateEntry(getCurrentDateString());
     const expenseItems = this.props.data[formattedDate] || [{}];
-    console.log(expenseItems);
     return (
       <Container>
         <FormHeader setDate={this.setDate} />
         <ExpenseItem
           isOpen={this.state.isModalOpen}
           close={this.closeExpenseItem}
-          /* key={index} */
+          key={this.state.itemCount}
           sno={this.state.itemCount}
           data={expenseItems[this.state.selectedIndex]}
           content={expensesContent}
@@ -94,14 +92,14 @@ export default class ExpensesPage extends Component {
         </Grid>
         <Content>
           {expenseItems.map((e, index) =>
-            <Row>
+            <Row key={index}>
               {expensesContent.map((c, index) => {
                 const items =
                   c.items &&
                   (c.items.length ? c.items : c.items[this.state.category]);
                 const id = c.id;
                 return (
-                  <Col>
+                  <Col key={index}>
                     <Text>
                       {e[id]}
                     </Text>

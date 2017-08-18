@@ -59,6 +59,7 @@ export default class BoreDetailsPage extends Component {
 
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
+    this.setState({ [id]: selectedValue });
     this.props.onBoreItemUpdate(this.state.date, { [id]: selectedValue });
   }
 
