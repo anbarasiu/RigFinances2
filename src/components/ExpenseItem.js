@@ -17,8 +17,12 @@ export default class ExpenseItem extends Component {
       sno: 0,
       category: (this.props.data && this.props.data.category) || '',
       subcategory: (this.props.data && this.props.data.subcategory) || '',
-      spenton: (this.props.data && this.props.data.spenton) || '',
-      modalVisible: this.props.isOpen
+      amount: (this.props.data && this.props.data.amount) || '',
+      remarks: (this.props.data && this.props.data.remarks) || '',
+      quantity: (this.props.data && this.props.data.quantity) || '',
+      enginehrs: (this.props.data && this.props.data.enginehrs) || '',
+      extra: (this.props.data && this.props.data.extra) || '',
+      spenton: (this.props.data && this.props.data.spenton) || ''
     };
     this.updateValue = this.updateValue.bind(this);
   }
@@ -26,20 +30,27 @@ export default class ExpenseItem extends Component {
   state: {
     category: string,
     subcategory: string,
-    spenton: string,
-    modalVisible: boolean
+    spenton: string
   };
 
   props: {
     data: Object,
     content: Array<any>,
     columnStyle?: Object,
-    onExpenseItemUpdate: Function
+    onExpenseItemUpdate: Function,
+    close: Function,
+    isOpen: boolean
   };
 
   updateValue: Function;
   updateValue(id: string, selectedValue: any) {
-    this.props.onExpenseItemUpdate({ [id]: selectedValue });
+    this.setState({ [id]: selectedValue });
+  }
+
+  saveDetails: Function;
+  saveDetails() {
+    this.props.onExpenseItemUpdate({ [this.state.sno]: this.state });
+    this.props.close();
   }
 
   render() {
@@ -48,7 +59,7 @@ export default class ExpenseItem extends Component {
       <Modal
         animationType={'slide'}
         transparent={false}
-        visible={this.state.modalVisible}
+        visible={this.props.isOpen}
         onRequestClose={() => {
           alert('Modal has been closed.');
         }}
@@ -75,7 +86,7 @@ export default class ExpenseItem extends Component {
         </Grid>
         <TouchableHighlight
           onPress={() => {
-            this.props.close();
+            this.saveDetails();
           }}
         >
           <Text>Save</Text>

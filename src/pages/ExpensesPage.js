@@ -45,7 +45,7 @@ export default class ExpensesPage extends Component {
   }
 
   onExpenseItemUpdate: Function;
-  onExpenseItemUpdate(data: Array<Object>) {
+  onExpenseItemUpdate(data: Object) {
     this.props.onExpenseItemUpdate(this.state.date, data);
   }
 
