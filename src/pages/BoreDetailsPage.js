@@ -11,6 +11,7 @@ import {
   Label
 } from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import { renderComponent } from '../utils';
 
@@ -72,19 +73,23 @@ export default class BoreDetailsPage extends Component {
             {boreDetailsContent.map((b, index) => {
               return (
                 <Item>
-                  <Label>
-                    {b.field}
-                  </Label>
-                  {renderComponent(
-                    b.id,
-                    b.type,
-                    {},
-                    b.items,
-                    this.state[b.id] !== undefined
-                      ? this.state[b.id]
-                      : index + 1,
-                    this.updateValue
-                  )}
+                  <Col size={1}>
+                    <Label>
+                      {b.field}
+                    </Label>
+                  </Col>
+                  <Col size={3}>
+                    {renderComponent(
+                      b.id,
+                      b.type,
+                      {},
+                      b.items,
+                      this.state[b.id] !== undefined
+                        ? this.state[b.id]
+                        : index + 1,
+                      this.updateValue
+                    )}
+                  </Col>
                 </Item>
               );
             })}

@@ -10,6 +10,7 @@ import {
   Item,
   Label
 } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
 import content from '../content/employeeMaster';
 import { renderComponent } from '../utils';
@@ -65,19 +66,23 @@ export default class EmployeeMasterPage extends Component {
             {content.map((c, index) => {
               return (
                 <Item>
-                  <Label>
-                    {c.field}
-                  </Label>
-                  {renderComponent(
-                    c.id,
-                    c.type,
-                    {},
-                    c.items,
-                    this.state[c.id] !== undefined
-                      ? this.state[c.id]
-                      : index + 1,
-                    this.updateValue
-                  )}
+                  <Col size={1}>
+                    <Label>
+                      {c.field}
+                    </Label>
+                  </Col>
+                  <Col size={3}>
+                    {renderComponent(
+                      c.id,
+                      c.type,
+                      {},
+                      c.items,
+                      this.state[c.id] !== undefined
+                        ? this.state[c.id]
+                        : index + 1,
+                      this.updateValue
+                    )}
+                  </Col>
                 </Item>
               );
             })}

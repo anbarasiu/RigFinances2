@@ -65,39 +65,48 @@ export default class ExpenseItem extends Component {
     return (
       <Modal
         animationType={'slide'}
-        transparent={false}
+        transparent={true}
         visible={this.props.isOpen}
         onRequestClose={() => {
           alert('Modal has been closed.');
         }}
       >
-        <Grid>
-          {content.map((c, index) => {
-            const items =
-              c.items &&
-              (c.items.length ? c.items : c.items[this.state.category]);
-            const id = c.id;
-            return (
-              <Col>
-                {renderComponent(
-                  id,
-                  c.type,
-                  this.props.columnStyle,
-                  items,
-                  this.state[c.id],
-                  this.updateValue
-                )}
-              </Col>
-            );
-          })}
-        </Grid>
-        <TouchableHighlight
-          onPress={() => {
-            this.saveDetails();
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            width: '75%',
+            backgroundColor: 'white'
           }}
         >
-          <Text>Save</Text>
-        </TouchableHighlight>
+          <Grid>
+            {content.map((c, index) => {
+              const items =
+                c.items &&
+                (c.items.length ? c.items : c.items[this.state.category]);
+              const id = c.id;
+              return (
+                <Col>
+                  {renderComponent(
+                    id,
+                    c.type,
+                    this.props.columnStyle,
+                    items,
+                    this.state[c.id],
+                    this.updateValue
+                  )}
+                </Col>
+              );
+            })}
+          </Grid>
+          <TouchableHighlight
+            onPress={() => {
+              this.saveDetails();
+            }}
+          >
+            <Text>Save</Text>
+          </TouchableHighlight>
+        </View>
       </Modal>
     );
   }
