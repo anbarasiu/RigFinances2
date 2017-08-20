@@ -17,9 +17,9 @@ export default class ExpenseItem extends Component {
       sno: this.props.sno,
       category: (this.props.data && this.props.data.category) || '',
       subcategory: (this.props.data && this.props.data.subcategory) || '',
-      amount: (this.props.data && this.props.data.amount) || '',
+      amount: (this.props.data && this.props.data.amount) || 0,
       remarks: (this.props.data && this.props.data.remarks) || '',
-      quantity: (this.props.data && this.props.data.quantity) || '',
+      quantity: (this.props.data && this.props.data.quantity) || 0,
       enginehrs: (this.props.data && this.props.data.enginehrs) || '',
       extra: (this.props.data && this.props.data.extra) || '',
       spenton: (this.props.data && this.props.data.spenton) || ''
@@ -37,9 +37,7 @@ export default class ExpenseItem extends Component {
     quantity: number,
     enginehrs: string,
     extra: string,
-    spenton: string,
-    itemCount: number,
-    selectedIndex: number
+    spenton: string
   };
 
   props: {

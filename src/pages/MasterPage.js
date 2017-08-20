@@ -17,7 +17,7 @@ class MasterPage extends Component {
 
   props: {
     navigation: Object,
-    expenses: Array<Object>,
+    expenses: Object,
     bore: Object,
     employee: Object,
     onExpenseItemUpdate: Function,

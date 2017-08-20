@@ -30,7 +30,9 @@ export default class ExpensesPage extends Component {
 
   state: {
     date: string,
-    isModalOpen: boolean
+    isModalOpen: boolean,
+    itemCount: number,
+    selectedIndex: number
   };
 
   setDate: Function;
@@ -49,7 +51,7 @@ export default class ExpensesPage extends Component {
   }
 
   props: {
-    data: Array<Object>,
+    data: Object,
     onExpenseItemUpdate: Function
   };
 
@@ -94,9 +96,6 @@ export default class ExpensesPage extends Component {
           {expenseItems.map((e, index) =>
             <Row key={index}>
               {expensesContent.map((c, index) => {
-                const items =
-                  c.items &&
-                  (c.items.length ? c.items : c.items[this.state.category]);
                 const id = c.id;
                 return (
                   <Col key={index}>
