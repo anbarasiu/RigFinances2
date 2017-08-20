@@ -29,12 +29,21 @@ export default class ExpenseItem extends Component {
   }
 
   state: {
+    sno: number,
     category: string,
     subcategory: string,
-    spenton: string
+    amount: number,
+    remarks: string,
+    quantity: number,
+    enginehrs: string,
+    extra: string,
+    spenton: string,
+    itemCount: number,
+    selectedIndex: number
   };
 
   props: {
+    sno: number,
     data: Object,
     content: Array<any>,
     columnStyle?: Object,
@@ -54,7 +63,7 @@ export default class ExpenseItem extends Component {
     this.props.close();
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Object) {
     if (this.props.sno != nextProps.sno) {
       this.setState({ sno: nextProps.sno });
     }
