@@ -21,14 +21,25 @@ async function showDatePicker(id, handler) {
   }
 }
 
+/*
+ *  Return a props object of validation rules
+ */
+function addValidationRules(str) {
+  return str.split('-').reduce((p, c, i) => {
+    return { [c]: c };
+  }, {});
+}
+
 export function renderComponent(
   id: string,
   type: string,
   style?: Object,
   content: Array<any>,
   value: any,
-  handler: Function
+  handler: Function,
+  validation: string
 ) {
+  const attrs = validation && addValidationRules(validation);
   switch (type) {
     case 'Picker':
       return (
@@ -40,6 +51,7 @@ export function renderComponent(
             handler(id, selectedValue);
           }}
           selectedValue={value}
+          {...attrs}
         >
           {content.map(c => <Picker.Item key={id} label={c} value={c} />)}
         </Picker>
@@ -47,20 +59,24 @@ export function renderComponent(
     case 'Number':
       return (
         <Input
+          name={id}
           style={style}
           keyboardType="numeric"
           onChangeText={selectedValue => {
             handler(id, selectedValue);
           }}
+          {...attrs}
         />
       );
     case 'Text':
       return (
         <Input
+          name={id}
           style={style}
           onChangeText={selectedValue => {
             handler(id, selectedValue);
           }}
+          {...attrs}
         />
       );
     case 'Switch':
@@ -71,31 +87,36 @@ export function renderComponent(
           onValueChange={selectedValue => {
             handler(id, selectedValue);
           }}
+          {...attrs}
         />
       );
     case 'TimePicker':
       return (
         <Input
+          name={id}
           style={style}
           keyboardType="numeric"
           onChangeText={selectedValue => {
             handler(id, selectedValue);
           }}
+          {...attrs}
         />
       );
     case 'DatePicker':
       return (
         <Input
+          name={id}
           style={style}
           value={value}
           onFocus={() => {
             showDatePicker(id, handler);
           }}
+          {...attrs}
         />
       );
     default:
       return (
-        <Text style={style}>
+        <Text style={style} {...attrs}>
           {value}
         </Text>
       );

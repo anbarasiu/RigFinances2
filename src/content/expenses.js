@@ -1,3 +1,8 @@
+/*  Content for Expenses page
+ *  @items: Picker items
+ *  @validation - format : <rule1>-<rule2>-...-<rulen> - oneOf[required, pattern:<pattern>]
+ */
+
 export default [
   { id: 'sno', field: 'S.No.' },
   {

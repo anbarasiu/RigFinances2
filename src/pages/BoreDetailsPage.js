@@ -1,18 +1,11 @@
 // @flow
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import {
-  Container,
-  Text,
-  Content,
-  Button,
-  Form,
-  Item,
-  Label
-} from 'native-base';
+import { Container, Text, Content, Button, Item, Label } from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
+import Form from '../components/Form';
 import { renderComponent } from '../utils';
 
 export default class BoreDetailsPage extends Component {
@@ -87,7 +80,8 @@ export default class BoreDetailsPage extends Component {
                       this.state[b.id] !== undefined
                         ? this.state[b.id]
                         : index + 1,
-                      this.updateValue
+                      this.updateValue,
+                      b.validation
                     )}
                   </Col>
                 </Item>
