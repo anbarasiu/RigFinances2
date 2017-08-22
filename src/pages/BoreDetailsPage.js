@@ -5,10 +5,10 @@ import { Container, Text, Content, Button, Item, Label } from 'native-base';
 import boreDetailsContent from '../content/boreDetails';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import FormHeader from '../components/FormHeader';
-import Form from '../components/Form';
+import processForm from '../components/Form';
 import { renderComponent } from '../utils';
 
-export default class BoreDetailsPage extends Component {
+class BoreDetailsPage extends Component {
   static navigationOptions = {
     title: 'Bore Details'
   };
@@ -59,42 +59,35 @@ export default class BoreDetailsPage extends Component {
 
   render() {
     return (
-      <Container>
-        <Content>
-          <Form>
-            <FormHeader setDate={this.setDate} />
-            {boreDetailsContent.map((b, index) => {
-              return (
-                <Item>
-                  <Col size={1}>
-                    <Label>
-                      {b.field}
-                    </Label>
-                  </Col>
-                  <Col size={3}>
-                    {renderComponent(
-                      b.id,
-                      b.type,
-                      {},
-                      b.items,
-                      this.state[b.id] !== undefined
-                        ? this.state[b.id]
-                        : index + 1,
-                      this.updateValue,
-                      b.validation
-                    )}
-                  </Col>
-                </Item>
-              );
-            })}
-            <Button type="button" onPress={this.onSubmitPressed} block>
-              <Text>Submit</Text>
-            </Button>
-          </Form>
-        </Content>
-      </Container>
+      <Content>
+        <FormHeader setDate={this.setDate} />
+        {boreDetailsContent.map((b, index) => {
+          return (
+            <Item>
+              <Col size={1}>
+                <Label>
+                  {b.field}
+                </Label>
+              </Col>
+              <Col size={3}>
+                {renderComponent(
+                  b.id,
+                  b.type,
+                  {},
+                  b.items,
+                  this.state[b.id] !== undefined ? this.state[b.id] : index + 1,
+                  this.updateValue,
+                  b.validation
+                )}
+              </Col>
+            </Item>
+          );
+        })}
+      </Content>
     );
   }
 }
+
+export default processForm(BoreDetailsPage);
 
 AppRegistry.registerComponent('BoreDetailsPage', () => BoreDetailsPage);
