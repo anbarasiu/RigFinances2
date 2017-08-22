@@ -24,7 +24,9 @@ async function showDatePicker(id, handler) {
 /*
  *  Return a props object of validation rules
  */
-function addValidationRules(str) {
+addValidationRules: Function;
+function addValidationRules(str: string) {
+  if (!str) return {};
   return str.split('-').reduce((p, c, i) => {
     return { [c]: c };
   }, {});
@@ -37,9 +39,9 @@ export function renderComponent(
   content: Array<any>,
   value: any,
   handler: Function,
-  validation: string
+  validation?: string
 ) {
-  const attrs = validation && addValidationRules(validation);
+  const attrs: Object = validation ? addValidationRules(validation) : {};
   switch (type) {
     case 'Picker':
       return (

@@ -4,17 +4,18 @@ import { AppRegistry, View } from 'react-native';
 
 export default class Form extends Component {
   componentWillMount() {
-    this.fields = [];
+    // this.fields = [];
     this.traverseFields(this.props.children);
   }
 
-  applyValidationRules(el) {
+  applyValidationRules: Function;
+  applyValidationRules(el: Object) {
     if (el.required) {
       console.log(el); // Get value
     }
   }
-
-  traverseFields(children) {
+  traverseFields: Function;
+  traverseFields(children: Array<Object>) {
     React.Children.forEach(children, child => {
       if (child.props && child.props.name) {
         this.applyValidationRules(child.props);
